@@ -25,7 +25,7 @@
 							@foreach (DB::table('cities')->get() as $city)
 							<option name="grad_id" value="{{$city->id}}">{{ $city->grad }}</option>
 							@endforeach
-							<option selected="selected">
+							<option selected="selected" value="{{$customer->grad_id}}">
 								{{$customer->city['grad']}}
 							</option>
 						</select>

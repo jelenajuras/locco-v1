@@ -23,7 +23,7 @@
 							@foreach (DB::table('customers')->get() as $customer)
 								<option name="customer_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach
-							<option selected="selected">
+							<option selected="selected"  value="{{ $project->customer_id }}">
 								{{$project->narucitelj['naziv']}}
 							</option>
 						</select>
@@ -35,7 +35,7 @@
 							@foreach (DB::table('customers')->get() as $customer)
 								<option name="investitor_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach
-							<option selected="selected">
+							<option selected="selected" value="{{ $project->investitor_id }}">
 								{{$project->investitor['naziv']}}
 							</option>
 						</select>

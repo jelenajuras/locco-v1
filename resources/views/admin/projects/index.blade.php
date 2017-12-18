@@ -32,7 +32,7 @@
 								<td>{{ $project->id }}</td>
                                 <td>{{ $project->investitor['naziv'] }}</td>
                                 <td>{{ $project->narucitelj['naziv'] }}</td>
-								<td>{{ $project->name }}</td>
+								<td>{{ $project->naziv }}</td>
                                   <td>
                                     <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-default">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

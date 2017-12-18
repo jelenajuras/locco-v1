@@ -55,10 +55,10 @@ class ProjectController extends Controller
 		$input = $request;
 
 		$data = array(
-			'id'  => $input['id'],
-			'customer_id'  => $input['customer_id'],
+			'id'             => $input['id'],
+			'customer_id'    => $input['customer_id'],
 			'investitor_id'  => $input['investitor_id'],
-			'naziv' 			 => $input['naziv']
+			'naziv' 		 => $input['naziv']
 		);
 		
 		$project = new Project();
@@ -101,7 +101,7 @@ class ProjectController extends Controller
 		$input = $request;
 		
 		$data = array(
-			'id'  			 => $input['id'],
+			'id'			 => $input['id'],
 			'customer_id'    => $input['customer_id'],
 			'investitor_id'  => $input['investitor_id'],
 			'naziv'			 => $input['naziv']
@@ -123,12 +123,12 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        $customer = Customer::find($id);
-		$customer ->delete();
+        $project = Project::find($id);
+		$project ->delete();
 		
-		$message = session()->flash('success', 'Naručitelj je uspješno obrisan');
+		$message = session()->flash('success', 'Projekt je uspješno obrisan');
 		
-		return redirect()->route('admin.customers.index')->withFlashMessage($message);
+		return redirect()->route('admin.projects.index')->withFlashMessage($message);
     }
 
 

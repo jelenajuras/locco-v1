@@ -13,7 +13,7 @@ class City extends Model
 	* 
 	* @var string
 	*/
-	protected static $naruciteljModel = 'App\Models\Narucitelj'; 
+	protected static $naruciteljModel = 'App\Models\Customer'; 
 	
 	/*
 	* Returns the Grad relationship

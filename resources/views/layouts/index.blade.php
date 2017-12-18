@@ -17,8 +17,36 @@
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
+	
+<style>
+	body {
+		background-color: rgb(230, 230, 230);
+	}
+	#nav {
+		background-color: rgb(77, 77, 77);
+	}
+	#nav1 {
+		color: rgb(255, 255, 255);
+		color: rgb(255, 255, 255);
+	}
+	#inv1 {
+		background-color: rgb(128,128,128);
+		border-color:rgb(77, 77, 77);
+		color:white;
+	}
+	#h3 {
+		background-color: rgb(166, 166, 166);
+	}
+	#border1 {
+    	border-style: solid;
+   	 	border-width: 5px;
+		border-color:rgb(77, 77, 77);
+	}
+	
+	
+</style>
     <body>
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar" id="nav">
           <div class="container-fluid">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
@@ -28,24 +56,24 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="/">AlgebraBlog</a>
+                  <a class="navbar-brand" href="/" id="nav1">Duplico</a>
               </div>
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}">Home</a></li>				  
+					<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}" id="nav1">Početna strana</a></li>				  
 				</ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Sentinel::check())
                         <li>
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="user"></span> {{ Sentinel::getUser()->email }} <span class="caret"></span></a>
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="user"></span> {{ Sentinel::getUser()->first_name }} <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="{{ route('auth.logout') }}">Log Out</a></li>
+                            <li><a href="{{ route('auth.logout') }}">Odjavi se</a></li>
                           </ul>
                         </li>
                     @else
-                        <li><a href="{{ route('auth.login.form') }}">Login</a></li>
-                        <li><a href="{{ route('auth.register.form') }}">Register</a></li>
+                        <li><a href="{{ route('auth.login.form') }}" id="nav1" >Prijavi se</a></li>
+                        <li><a href="{{ route('auth.register.form') }}" id="nav1">Registriraj se</a></li>
                     @endif
                 </ul>
               </div><!-- /.navbar-collapse -->

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateProjektiTable extends Migration
+class UpdateTableCustomers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class UpdateProjektiTable extends Migration
      */
     public function up()
     {
-        Schema::table('projekti', function (Blueprint $table) {
-            $table->string('name')->after('narucitelj_id')->default(0);
+        Schema::table('customers', function (Blueprint $table) {
+			
+            $table->timestamps();
         });
     }
 
@@ -25,8 +26,6 @@ class UpdateProjektiTable extends Migration
      */
     public function down()
     {
-        Schema::table('projekti', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

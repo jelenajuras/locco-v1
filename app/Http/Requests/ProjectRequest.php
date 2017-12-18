@@ -24,7 +24,7 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'          => 'required',
+            'id'          => 'required|min:4',
 			'customer_id' => 'required',
 			'naziv'       => 'required'
         ];
@@ -34,8 +34,9 @@ class ProjectRequest extends FormRequest
 	{
 		return [
 			'id.required' 		   => 'Unos broja projekta je obavezan!',
+			'id.min' 		   	   => 'Broj projekta mora imati minimalno 4 znamenke!',
 			'customer_id.required' => 'Unos naručitelja je obavezan!',
-			'naziv.required'        => 'Unos naziva projekta je obavezan!',
+			'naziv.required'       => 'Unos naziva projekta je obavezan!',
 		];
 	}
 }

@@ -20,7 +20,8 @@ class Customer extends Model
 	* 
 	* @var string
 	*/
-	protected static $projektModel = 'App\Models\Projekt'; 
+	protected static $projektModel = 'App\Models\Project'; 
+	
 	
 	/*
 	* Returns the users relationship
@@ -34,7 +35,7 @@ class Customer extends Model
 	}
 	
 	/*
-	* Returns the comments relationship
+	* Returns the projekt relationship
 	* 
 	* @return \Illuminate\Database\Eloquent\Relations\HasMany
 	*/
@@ -68,6 +69,3 @@ class Customer extends Model
 		return $this->update($customer);
 	}	
 }
-
-
-	

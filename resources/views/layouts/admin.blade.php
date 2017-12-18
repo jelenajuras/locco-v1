@@ -20,8 +20,34 @@
 		
 		@stack('stylesheet')
     </head>
+<style>
+	body {
+		background-color: rgb(230, 230, 230);
+	}
+	#nav {
+		background-color: rgb(77, 77, 77);
+	}
+	#nav1 {
+		color: rgb(255, 255, 255);
+	}
+	#inv1 {
+		background-color: rgb(128,128,128);
+		border-color:rgb(77, 77, 77);
+		color:white;
+	}
+	#h3 {
+		background-color: rgb(166, 166, 166);
+	}
+	#border1 {
+    	border-style: solid;
+   	 	border-width: 5px;
+		border-color:rgb(77, 77, 77);
+	}
+	
+	
+	</style>	
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" id="nav">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -31,18 +57,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ route('admin.dashboard') }}">AlgebraBlog | Admin</a>
+                    <a class="navbar-brand" href="{{ route('admin.dashboard') }}" id="nav1">Duplico - locco</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                         @if (Sentinel::check() && Sentinel::inRole('administrator'))
-                            <li class="{{ Request::is('admin/users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}">Users</a></li>
-                            <li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('roles.index') }}">Roles</a></li>
+                            <li class="{{ Request::is('admin/users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}">Djelatnici</a></li>
+                            <li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('roles.index') }}">Dozvole</a></li>
                         @endif
-						<li class="{{ Request::is('admin/posts*') ? 'active' : '' }}"><a href="{{ route('admin.posts.index') }}">Posts</a></li>
-						<li class="{{ Request::is('admin/comments*') ? 'active' : '' }}"><a href="#">Comments <span class="badge">{{ Comments::pendingComments }}</span></a></li>
+						<li class=""><a href="{{ route('admin.cities.index') }}">Gradovi</a></li>
+						<li class=""><a href="{{ route('admin.customers.index') }}">Naručitelji</a></li>
+						<li class=""><a href="{{ route('admin.projects.index') }}">Projekti</a></li>
+						<li class=""><a href="">Odjeli</a></li>
+						<li class=""><a href="">Vozila</a></li>
+						<li class=""><a href="">Locco vožnja</a></li>
+						<li class="{{ Request::is('admin/comments*') ? 'active' : '' }}"><a href="#">Comments <span class="badge">{{ 2 }}</span></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if (Sentinel::check())
