@@ -5,7 +5,7 @@
 @section('content')
     <div class="page-header">
         <div class='btn-toolbar pull-right'>
-            <a class="btn btn-primary btn-lg" href="{{ route('admin.customers.create') }}">
+            <a class="btn btn-primary btn-lg" href="{{ route('admin.customers.create') }}"id="nav">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 Dodaj naručitelja
             </a>

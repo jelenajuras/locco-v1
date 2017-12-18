@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading"  id="nav">
                 <h3 class="panel-title">Ispravi podatke naručitelja</h3>
             </div>
             <div class="panel-body">
@@ -22,6 +22,7 @@
                     </div>
 					<div class="form-group">
 						<select class="form-control" name="grad_id" id="sel1"/>
+							
 							@foreach (DB::table('cities')->get() as $city)
 							<option name="grad_id" value="{{$city->id}}">{{ $city->grad }}</option>
 							@endforeach
@@ -33,7 +34,7 @@
 					{{ csrf_field() }}
 					{{ method_field('PUT') }}
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Ispravi podatke">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Ispravi podatke"  id="nav">
                 </fieldset>
                 </form>
 					

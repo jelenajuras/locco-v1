@@ -3,9 +3,7 @@
 @section('title', 'Duplico')
 
 @section('content')
-<style>
 
-</style>
 
 <div class="row">
    

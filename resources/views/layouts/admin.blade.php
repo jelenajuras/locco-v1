@@ -20,15 +20,20 @@
 		
 		@stack('stylesheet')
     </head>
+	
 <style>
 	body {
 		background-color: rgb(230, 230, 230);
 	}
 	#nav {
 		background-color: rgb(77, 77, 77);
+		color: rgb(255, 133, 51);
 	}
 	#nav1 {
-		color: rgb(255, 255, 255);
+		color: rgb(255, 133, 51);
+	}
+	#textGrey {
+		color: rgb(77, 77, 77);
 	}
 	#inv1 {
 		background-color: rgb(128,128,128);
@@ -43,9 +48,8 @@
    	 	border-width: 5px;
 		border-color:rgb(77, 77, 77);
 	}
+</style>
 	
-	
-	</style>	
     <body>
         <nav class="navbar navbar-default" id="nav">
             <div class="container-fluid">
@@ -62,31 +66,32 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                        <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}" id="nav1">Dashboard</a></li>
                         @if (Sentinel::check() && Sentinel::inRole('administrator'))
-                            <li class="{{ Request::is('admin/users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}">Djelatnici</a></li>
-                            <li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('roles.index') }}">Dozvole</a></li>
+                            <li class="{{ Request::is('admin/users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}" id="nav1">Djelatnici</a></li>
+                            <li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('roles.index') }}" id="nav1">Dozvole</a></li>
+							<li class=""><a href="{{ route('admin.cities.index') }}" id="nav1">Gradovi</a></li>
+							<li class=""><a href="{{ route('admin.customers.index') }}" id="nav1">Naručitelji</a></li>
+							<li class=""><a href="{{ route('admin.projects.index') }}" id="nav1">Projekti</a></li>
+							<li class=""><a href="" id="nav1">Odjeli</a></li>
+							<li class=""><a href="" id="nav1">Vozila</a></li>
                         @endif
-						<li class=""><a href="{{ route('admin.cities.index') }}">Gradovi</a></li>
-						<li class=""><a href="{{ route('admin.customers.index') }}">Naručitelji</a></li>
-						<li class=""><a href="{{ route('admin.projects.index') }}">Projekti</a></li>
-						<li class=""><a href="">Odjeli</a></li>
-						<li class=""><a href="">Vozila</a></li>
-						<li class=""><a href="">Locco vožnja</a></li>
-						<li class="{{ Request::is('admin/comments*') ? 'active' : '' }}"><a href="#">Comments <span class="badge">{{ 2 }}</span></a></li>
+						
+						<li class=""><a href="" id="nav1">Locco vožnja</a></li>
+						<li class="{{ Request::is('admin/comments*') ? 'active' : '' }}"><a href="#" id="nav1">Comments <span class="badge">{{ 2 }}</span></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if (Sentinel::check())
                           <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="user"></span> {{ Sentinel::getUser()->email }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                              <li><a href="{{ route('auth.logout') }}">Log Out</a></li>
+                              <li><a href="{{ route('auth.logout') }}" id="nav1">Odjava</a></li>
                             </ul>
                           </li>
                         @else
-                            <li><a href="{{ route('auth.login.form') }}">Login</a></li>
-                            <li><a href="{{ route('auth.register.form') }}">Register</a></li>
-                        @endif
+                            <li><a href="{{ route('auth.login.form') }}" id="nav1">Prijava</a></li>
+                            <li><a href="{{ route('auth.register.form') }}" id="nav1">Registracija</a></li>
+                        @endif   
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

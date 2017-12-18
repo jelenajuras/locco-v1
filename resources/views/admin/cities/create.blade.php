@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" id="nav">
                 <h3 class="panel-title">Upiši novi grad</h3>
             </div>
             <div class="panel-body">
@@ -21,7 +21,7 @@
 						{!! ($errors->has('grad') ? $errors->first('grad', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Upiši">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Upiši" id="nav">
                 </fieldset>
                 </form>
             </div>

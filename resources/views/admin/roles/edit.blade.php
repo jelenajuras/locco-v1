@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Role')
+@section('title', 'Promjeni ulogu')
 
 @section('content')
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Edit Role</h3>
+            <div class="panel-heading" id="nav">
+                <h3 class="panel-title">Promjena podataka uloge</h3>
             </div>
             <div class="panel-body">
                 <form accept-charset="UTF-8" role="form" method="post" action="{{ route('roles.update', $role->id) }}">
@@ -21,7 +21,7 @@
                         {!! ($errors->has('slug') ? $errors->first('slug', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 
-                    <h5>Permissions:</h5>
+                    <h5>Dozvole:</h5>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="permissions[users.create]" value="1" {{ $role->hasAccess('users.create') ? 'checked' : '' }}>
@@ -72,7 +72,7 @@
                     </div>
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
                     <input name="_method" value="PUT" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Update">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Promjeni!" id="nav">
                 </fieldset>
                 </form>
             </div>

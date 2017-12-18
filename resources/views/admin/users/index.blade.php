@@ -5,9 +5,9 @@
 @section('content')
     <div class="page-header">
         <div class='btn-toolbar pull-right'>
-            <a class="btn btn-primary btn-lg" href="{{ route('users.create') }}">
+            <a class="btn btn-primary btn-lg" href="{{ route('users.create') }}" id="nav">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                Create User
+                Dodaj novog korisnika
             </a>
         </div>
         <h1>Users</h1>

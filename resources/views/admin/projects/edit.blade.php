@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" id="nav">
                 <h3 class="panel-title">Promjeni podatke o projektu</h3>
             </div>
             <div class="panel-body">
@@ -48,7 +48,7 @@
 					{{ csrf_field() }}
 					{{ method_field('PUT') }}
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Unesi promjene">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Unesi promjene" id="nav">
                 </fieldset>
                 </form>
             </div>

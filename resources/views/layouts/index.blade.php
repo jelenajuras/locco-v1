@@ -24,10 +24,10 @@
 	}
 	#nav {
 		background-color: rgb(77, 77, 77);
+		color: rgb(255, 133, 51);
 	}
 	#nav1 {
-		color: rgb(255, 255, 255);
-		color: rgb(255, 255, 255);
+		color: rgb(255, 133, 51);
 	}
 	#inv1 {
 		background-color: rgb(128,128,128);
@@ -42,9 +42,8 @@
    	 	border-width: 5px;
 		border-color:rgb(77, 77, 77);
 	}
-	
-	
 </style>
+
     <body>
       <nav class="navbar navbar" id="nav">
           <div class="container-fluid">

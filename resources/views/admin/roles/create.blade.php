@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Create New Role')
+@section('title', 'Nove uloge')
 
 @section('content')
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Create New Role</h3>
+            <div class="panel-heading" id="nav">
+                <h3 class="panel-title">Unesi novu ulogu</h3>
             </div>
             <div class="panel-body">
                 <form accept-charset="UTF-8" role="form" method="post" action="{{ route('roles.store') }}">
@@ -96,7 +96,7 @@
                     </div>
 					
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Create">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Create" id="nav">
                 </fieldset>
                 </form>
             </div>
