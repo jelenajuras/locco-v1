@@ -73,8 +73,8 @@
 							<li class=""><a href="{{ route('admin.cities.index') }}" id="nav1">Gradovi</a></li>
 							<li class=""><a href="{{ route('admin.customers.index') }}" id="nav1">Naručitelji</a></li>
 							<li class=""><a href="{{ route('admin.projects.index') }}" id="nav1">Projekti</a></li>
-							<li class=""><a href="" id="nav1">Odjeli</a></li>
-							<li class=""><a href="" id="nav1">Vozila</a></li>
+							<li class=""><a href="{{ route('admin.departments.index') }}" id="nav1">Odjeli</a></li>
+							<li class=""><a href="{{ route('admin.cars.index') }}" id="nav1">Vozila</a></li>
                         @endif
 						
 						<li class=""><a href="" id="nav1">Locco vožnja</a></li>

@@ -83,6 +83,24 @@ Route::group(['prefix' => 'admin'], function () {
   'update'		=> 'admin.projects.update', 
   'destroy'		=> 'admin.projects.destroy'
   ]]);
+  Route::resource('departments', 'Admin\DepartmentController', ['names' => [
+  'index' 		=> 'admin.departments.index', 
+  'create' 		=> 'admin.departments.create', 
+  'store' 		=> 'admin.departments.store', 
+  'show' 		=> 'admin.departments.show', 
+  'edit' 		=> 'admin.departments.edit', 
+  'update'		=> 'admin.departments.update', 
+  'destroy'		=> 'admin.departments.destroy'
+  ]]);
+  Route::resource('cars', 'Admin\CarController', ['names' => [
+  'index' 		=> 'admin.cars.index', 
+  'create' 		=> 'admin.cars.create', 
+  'store' 		=> 'admin.cars.store', 
+  'show' 		=> 'admin.cars.show', 
+  'edit' 		=> 'admin.cars.edit', 
+  'update'		=> 'admin.cars.update', 
+  'destroy'		=> 'admin.cars.destroy'
+  ]]);
 });
 
 // Post page

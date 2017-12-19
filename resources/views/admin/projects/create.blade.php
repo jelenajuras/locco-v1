@@ -20,8 +20,8 @@
                     <div class="form-group {{ ($errors->has('customer_id')) ? 'has-error' : '' }}">
 						<text>Naručitelj</text>
 						<select class="form-control" name="customer_id" id="sel1">
+							<option disabled selected value> </option>
 							@foreach (DB::table('customers')->get() as $customer)
-								<option disabled selected value> </option>
 								<option name="customer_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach
 						</select>
@@ -29,8 +29,8 @@
 					<div class="form-group">
 						<text>Investitor</text>
 						<select class="form-control" name="investitor_id"  id="sel1">
+							<option disabled selected value> </option>
 							@foreach (DB::table('customers')->get() as $customer)
-								<option disabled selected value> </option>
 								<option name="investitor_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach
 						</select>
