@@ -68,3 +68,4 @@ class Car extends Model
 		return $this->update($car);
 	}	
 }
+
