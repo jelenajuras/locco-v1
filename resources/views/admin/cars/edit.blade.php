@@ -1,6 +1,13 @@
 @extends('layouts.admin')
 
 @section('title', 'Ispravi vozilo')
+<head>
+  <title>Laravel Bootstrap Datepicker</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+</head>
 
 @section('content')
 <div class="row">
@@ -29,16 +36,32 @@
 						{!! ($errors->has('šasija') ? $errors->first('šasija', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
-                        <input class="form-control" type="date" placeholder="Prva registracija" name="prva_registracija" value="{{ $vozilo->prva_registracija }}" />
+						<input class="date form-control" placeholder="Prva registracija" type="text" name="prva_registracija" value="{{ $vozilo->prva_registracija }}">
 						{!! ($errors->has('prva_registracija') ? $errors->first('prva_registracija', '<p class="text-danger">:message</p>') : '') !!}
-                    </div>
+					</div>
+					<script type="text/javascript">
+						$('.date').datepicker({  
+						   format: 'yyyy-mm-dd'
+						 });  
+					</script>  
 					<div class="form-group">
-                        <input class="form-control" type="date" placeholder="Zadnja registracija" name="zadnja_registracija" value="{{ $vozilo->zadnja_registracija }}" />
+						<input class="date form-control" placeholder="Zadnja registracija" type="text" name="zadnja_registracija" value="{{ $vozilo->zadnja_registracija }}">
 						{!! ($errors->has('zadnja_registracija') ? $errors->first('zadnja_registracija', '<p class="text-danger">:message</p>') : '') !!}
-                    </div>
+					</div>
+					<script type="text/javascript">
+						$('.date').datepicker({  
+						   format: 'yyyy-mm-dd'
+						 });  
+					</script> 
 					<div class="form-group">
-                        <input class="form-control" type="date" placeholder="Slijedeća registracija" name="slijedeća_registracija" value="{{ $vozilo->zadnja_registracija}}" />
-                    </div>
+						<input class="date form-control" placeholder="Zadnji servis" type="text" name="zadnji_servis" value="{{ $vozilo->zadnji_servis }}">
+						{!! ($errors->has('zadnji_servis') ? $errors->first('zadnji_servis', '<p class="text-danger">:message</p>') : '') !!}
+					</div>
+					<script type="text/javascript">
+						$('.date').datepicker({  
+						   format: 'yyyy-mm-dd'
+						 });  
+					</script> 
 					<div class="form-group">
                         <input class="form-control" placeholder="Trenutni kilometri" name="trenutni_kilometri" type="text" value="{{ $vozilo->trenutni_kilometri }}" />
                     </div>

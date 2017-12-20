@@ -26,8 +26,10 @@ class CarRequest extends FormRequest
         return [
             'proizvođač' 		 => 'required',
 			'model' 			 => 'required',
+			'registracija' 		 => 'required',
 			'šasija' 			 => 'required',
 			'prva_registracija'  => 'required',
+			'zadnji_servis'		 => 'required',
 			'zadnja_registracija'=> 'required'
         ];
     }
@@ -37,9 +39,11 @@ class CarRequest extends FormRequest
 		return [
 			'proizvođač.required'=> 'Unos proizvođača je obavezan!',
 			'model.required'  	 => 'Unos modela je obavezan!',
+			'registracija.required' => 'Unos registracije je obavezan!',
 			'šasija.required'  	 => 'Unos šasije je obavezan!',
 			'prva_registracija'  => 'Unos prvog datuma registracije je obavezan!',
-			'zadnja_registracija'=> 'Unos datuma zadnje registracije je obavezan!'
+			'zadnja_registracija'=> 'Unos datuma zadnje registracije je obavezan!',
+			'zadnji_servis'		 => 'Unos datuma zadnjeg servisa je obavezan!'
 		];
 	}
 }

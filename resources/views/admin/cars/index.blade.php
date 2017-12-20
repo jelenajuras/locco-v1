@@ -24,7 +24,6 @@
 							<th>Šasija</th>
 							<th>Prva registracija</th>
 							<th>Zadnja registracija</th>
-							<th>Slijedeća registracija</th>
 							<th>Trenutni kilometri</th>
 							<th>Zadnji servis</th>
 							<th>Djelatnik</th>
@@ -40,7 +39,6 @@
 							<td>{{ $vozilo->šasija }} </td>
 							<td>{{ $vozilo->prva_registracija }} </td>
 							<td>{{ $vozilo->zadnja_registracija }} </td>
-							<td>{{ $vozilo->slijedeća_registracija }} </td>
 							<td>{{ $vozilo->trenutni_kilometri }} </td>
 							<td>{{ $vozilo->zadnji_servis }} </td>
 							<td>{{ $vozilo->user['first_name'] }} </td>

@@ -77,7 +77,7 @@
 							<li class=""><a href="{{ route('admin.cars.index') }}" id="nav1">Vozila</a></li>
                         @endif
 						
-						<li class=""><a href="" id="nav1">Locco vožnja</a></li>
+						<li class=""><a href="{{ route('admin.loccos.index') }}" id="nav1">Locco vožnja</a></li>
 						<li class="{{ Request::is('admin/comments*') ? 'active' : '' }}"><a href="#" id="nav1">Comments <span class="badge">{{ 2 }}</span></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

@@ -30,6 +30,24 @@ class Project extends Model
 	protected static $commentsModel = 'App\Models\Comment'; 	
 	
 	/*
+	* The Eloquent locco model name
+	* 
+	* @var string
+	*/
+	protected static $loccoModel = 'App\Models\Locco'; 
+	
+	/*
+	* Returns the locco relationship
+	* 
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	*/
+	
+	public function locco()
+	{
+		return $this->hasMany(static::$loccoModel,'projekt_id')->orderBy('created_at','DESC')->paginate(10);
+	}	
+	
+	/*
 	* Returns the customer relationship
 	* 
 	* @return \Illuminate\Database\Eloquent\Relations\BelongsTo

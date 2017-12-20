@@ -22,6 +22,23 @@ class Car extends Model
 	*/
 	protected static $departmentsModel = 'App\Models\Department'; 
 	
+	/*
+	* The Eloquent locco model name
+	* 
+	* @var string
+	*/
+	protected static $loccoModel = 'App\Models\Locco'; 
+	
+	/*
+	* Returns the locco relationship
+	* 
+	* @return \Illuminate\Database\Eloquent\Relations\HasMany
+	*/
+	
+	public function locco()
+	{
+		return $this->hasMany(static::$loccoModel,'vozilo_id')->orderBy('created_at','DESC')->paginate(10);
+	}	
 	
 	/*
 	* Returns the Users relationship

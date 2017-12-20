@@ -101,6 +101,15 @@ Route::group(['prefix' => 'admin'], function () {
   'update'		=> 'admin.cars.update', 
   'destroy'		=> 'admin.cars.destroy'
   ]]);
+  Route::resource('loccos', 'Admin\LoccoController', ['names' => [
+  'index' 		=> 'admin.loccos.index', 
+  'create' 		=> 'admin.loccos.create', 
+  'store' 		=> 'admin.loccos.store', 
+  'show' 		=> 'admin.loccos.show', 
+  'edit' 		=> 'admin.loccos.edit', 
+  'update'		=> 'admin.loccos.update', 
+  'destroy'		=> 'admin.loccos.destroy'
+  ]]);
 });
 
 // Post page
