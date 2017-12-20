@@ -26,10 +26,10 @@ class LoccoRequest extends FormRequest
         return [
            'vozilo_id' 		 => 'required',
 		   'user_id' 		 => 'required',
+		   'datum' 			 => 'required',
 		   'relacija' 		 => 'required',
 		   'početni_kilometri' 	=> 'required|numeric',
-		   'završni_kilometri' 	=> 'required|numeric',
-		   'user_id' 		 => 'required',
+		   'završni_kilometri' 	=> 'required|numeric'
         ];
     }
 	
@@ -37,6 +37,7 @@ class LoccoRequest extends FormRequest
 	{
 		return [
 			'vozilo_id.required'	=> 'Unos vozila je obavezan!',
+			'datum.required'	=> 'Unos datuma je obavezan!',
 			'user_id.required'	=> 'Unos vozača je obavezan!',
 			'relacija.required'	=> 'Unos relacije je obavezan!',
 			'početni_kilometri.required'	=> 'Unos početnih kilometara je obavezan!',

@@ -16,9 +16,10 @@ class CreateProjectsTable extends Migration
         //'id','customer_id','investitor_id','naziv'
 		    Schema::create('projects', function (Blueprint $table) {
             $table->unsignedInteger('id');
-			$table->integer('investitor_id');
-			$table->integer('customer_id');
-			$table->string('naziv');
+			$table->integer('investitor_id')->nullable();
+			$table->integer('customer_id')->nullable();
+			$table->string('naziv')->nullable();
+			$table->timestamps();
         });
     }
 

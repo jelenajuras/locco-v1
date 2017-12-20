@@ -43,15 +43,15 @@
 							<td>{{ $locco->razlog_puta }} </td>
 							<td>{{ $locco->početni_kilometri }} </td>
 							<td>{{ $locco->završni_kilometri }} </td>
-							<td>{{ $locco->završni_kilometri - $locco->početni_kilometri }} </td>
+							<td>{{ $locco->prijeđeni_kilometri }} </td>
 							<td>{{ $locco->komentar }} </td>
 							
                             <td>
-                                <a href="{{ route('admin.loccos.edit', $grad->id) }}" class="btn btn-default ">
+                                <a href="{{ route('admin.loccos.edit', $locco->id) }}" class="btn btn-default ">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         Edit
                                 </a>
-                                <a href="{{ route('admin.loccos.destroy', $grad->id) }}" class="btn btn-danger action_confirm" data-method="delete" data-token="{{ csrf_token() }}">
+                                <a href="{{ route('admin.loccos.destroy', $locco->id) }}" class="btn btn-danger action_confirm" data-method="delete" data-token="{{ csrf_token() }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         Delete
                                 </a>

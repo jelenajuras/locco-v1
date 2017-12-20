@@ -15,14 +15,15 @@ class CreateCarsTable extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('proizvođač');
-			$table->string('model');
-			$table->string('šasija');
-			$table->date('prva_registracija');
-			$table->date('zadnja_registracija');
-			$table->date('slijedeća_registracija');
-			$table->integer('trenutni_kilometri');
-			$table->date('zadnji_servis');
+			$table->string('proizvođač')->nullable();
+			$table->string('model')->nullable();
+			$table->string('registracija')->nullable();
+			$table->string('šasija')->nullable();
+			$table->date('prva_registracija')->nullable();
+			$table->date('zadnja_registracija')->nullable();
+			$table->date('slijedeća_registracija')->nullable();
+			$table->integer('trenutni_kilometri')->nullable();
+			$table->date('zadnji_servis')->nullable();
 			$table->integer('department_id')->nullable();
 			$table->integer('user_id')->nullable();
             $table->timestamps();

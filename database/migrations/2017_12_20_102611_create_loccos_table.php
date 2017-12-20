@@ -19,12 +19,12 @@ class CreateLoccosTable extends Migration
 			$table->date('datum')->nullable(false);
 			$table->integer('user_id')->nullable(false);
 			$table->string('relacija')->nullable(false);
-			$table->integer('projekt_id')->nullable;
-			$table->integer('razlog_puta')->nullable;
+			$table->integer('projekt_id')->nullable();
+			$table->string('razlog_puta')->nullable();
 			$table->integer('početni_kilometri')->nullable(false);
 			$table->integer('završni_kilometri')->nullable(false);
-			$table->integer('prijeđeni_kilometri')->nullable;
-			$table->string('Komentar')->nullable;
+			$table->integer('prijeđeni_kilometri')->nullable();
+			$table->string('Komentar')->nullable();
 			$table->timestamps();
         });
     }

@@ -61,6 +61,7 @@ class Car extends Model
 	{
 		return $this->belongsTo(static::$departmentsModel,'department_id');
 	}	
+	
 	/*
 	* Save Car
 	* 

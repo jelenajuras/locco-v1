@@ -15,7 +15,8 @@ class CreateCitiesTable extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->integer('id');
-			$table->string('grad');
+			$table->string('grad')->nullable();
+			$table->timestamps();
         });
     }
 

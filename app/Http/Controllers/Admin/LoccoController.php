@@ -55,13 +55,13 @@ class LoccoController extends Controller
 		$data = array(
 			'datum'  => $input['datum'],
 			'vozilo_id'  => $input['vozilo_id'],
-			'user_id'  => $input['vozač'],
+			'user_id'  => Sentinel::getUser()->id,
 			'relacija'  => $input['relacija'],
-			'projekt_id'  => $input['relacija'],
+			'projekt_id'  => $input['projekt_id'],
 			'razlog_puta'  => $input['razlog'],
 			'početni_kilometri'  => $input['početni_kilometri'],
 			'završni_kilometri'  => $input['završni_kilometri'],
-			'prijeđeni_kilometri'  => $input['završni_kilometri'],
+			'prijeđeni_kilometri'  => $input['završni_kilometri']-$input['početni_kilometri'],
 			'Komentar'  => $input['Komentar']
 		);
 		
@@ -71,7 +71,7 @@ class LoccoController extends Controller
 		$message = session()->flash('success', 'Uspješno je dodana nova locco vožnja');
 		
 		//return redirect()->back()->withFlashMessage($messange);
-		return redirect()->route('admin.locos.index')->withFlashMessage($message);
+		return redirect()->route('admin.loccos.index')->withFlashMessage($message);
     }
 
     /**

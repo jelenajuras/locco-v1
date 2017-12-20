@@ -28,6 +28,7 @@
 								<option name="vozilo_id" value=" {{ $car->id }} ">{{ $car->registracija }}</option>
 							@endforeach
 						</select>
+						{!! ($errors->has('vozilo_id') ? $errors->first('vozilo_id', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
 						<text>Datum vožnje</text>
@@ -39,15 +40,15 @@
 						   format: 'yyyy-mm-dd'
 						 });  
 					</script> 
-					<div class="form-group {{ ($errors->has('vozač')) ? 'has-error' : '' }}">
+					<div class="form-group {{ ($errors->has('user_id'))  ? 'has-error' : '' }}">
                         <text>Vozač</text>
-						<select class="form-control" name="vozač" id="sel1">
+						<select class="form-control" name="user_id" id="sel1" value="{{ old('user_id') }}">
+							@foreach (DB::table('users')->get() as $user)
+								<option name="user_id" value=" {{ $user->id }} ">{{ $user->first_name . ' ' . $user->last_name }}</option>
+							@endforeach	
 							<option selected="selected" value="{{ Sentinel::getUser()->id }}">
 								{{ Sentinel::getUser()->first_name . ' '. Sentinel::getUser()->last_name }}
 							</option>
-							@foreach (DB::table('users')->get() as $user)
-								<option name="vozač" value=" {{ $user->id }} ">{{ $user->first_name . ' ' . $user->last_name }}</option>
-							@endforeach	
 						</select>
                     </div>
 					<div class="form-group">

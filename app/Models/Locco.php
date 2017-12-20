@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Locco extends Model
 {
-    protected $fillable = ['registracija','datum','vozač','početni_kilometri','završni_kilometri','prijeđeni_kilometri','relacija','projekt','Komentar','razlog_puta'];
+    protected $fillable = ['vozilo_id','datum','user_id','relacija','projekt_id','razlog_puta','početni_kilometri','završni_kilometri','prijeđeni_kilometri','Komentar',];
 	
 	/*
 	* The Eloquent user model name
@@ -61,4 +61,28 @@ class Locco extends Model
 	{
 		return $this->belongsTo(static::$projectsModel,'projekt_id');
 	}
+	
+	/*
+	* Save Locco
+	* 
+	* @param array $locco
+	* @return void
+	*/
+	
+	public function saveLocco ($locco=array())
+	{
+		return $this->fill($locco)->save();
+	}
+	
+	/*
+	* Update Locco
+	* 
+	* @param array $locco
+	* @return void
+	*/
+	
+	public function updateLocco($locco=array())
+	{
+		return $this->update($locco);
+	}	
 }
