@@ -34,6 +34,31 @@
                         </div>
                     @endforeach
                     <hr />
+					<div class="form-group">
+						<text>Odjel</text>
+                        <select class="form-control" name="department_id" id="sel1" >
+							<option disabled selected value></option>
+							@foreach (DB::table('departments')->get() as $odjel)
+							<option name="department_id" value=" {{ $odjel->id }} ">{{ $odjel->name }}</option>
+							@endforeach
+							<option selected="selected" value="{{ $user->department_id }}">
+							
+							</option>
+						</select>
+                    </div>
+					<div class="form-group">
+						<text>Vozilo</text>
+                        <select class="form-control" name="car_id" id="sel1" >
+							<option disabled selected value></option>
+							@foreach (DB::table('cars')->get() as $vozilo)
+							<option name="car_id" value=" {{ $vozilo->id }} ">{{ $vozilo->registracija }}</option>
+							@endforeach
+							<option selected="selected" value="{{$user->car_id}}">
+								
+							</option>
+						</select>
+                    </div>
+				
                     <div class="form-group  {{ ($errors->has('password')) ? 'has-error' : '' }}">
                         <input class="form-control" placeholder="Password" name="password" type="password" value="">
                         {!! ($errors->has('password') ? $errors->first('password', '<p class="text-danger">:message</p>') : '') !!}

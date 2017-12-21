@@ -21,6 +21,20 @@ class Users extends EloquentUser
 	protected static $commentsModel = 'App\Models\Comment'; /* putanja do modela comments
 	
 	/*
+	* The Eloquent department model name
+	* 
+	* @var string
+	*/
+	protected static $departmentModel = 'App\Models\Department'; 
+	
+	/*
+	* The Eloquent car model name
+	* 
+	* @var string
+	*/
+	protected static $carModel = 'App\Models\Car'; 
+	
+	/*
 	* The Eloquent locco model name
 	* 
 	* @var string
@@ -59,4 +73,26 @@ class Users extends EloquentUser
 	{
 		return $this->hasMany(static::$commentsModel,'user_id');
 	}	
+	
+	/*
+	* Returns the Deparment relationship
+	* 
+	* @return \Illuminate\Database\Eloquent\Relations\belongsTo
+	*/
+	
+	public function department()
+	{
+		return $this->belongsTo(static::$departmentModel,'department_id');
+	}
+	
+	/*
+	* Returns the Car relationship
+	* 
+	* @return \Illuminate\Database\Eloquent\Relations\belongsTo
+	*/
+	
+	public function car()
+	{
+		return $this->hasOne(static::$carModel,'user_id');
+	}
 }

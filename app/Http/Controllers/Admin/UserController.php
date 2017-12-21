@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Users\IlluminateUserRepository;
 use App\Http\Controllers\Controller;
 
+
 class UserController extends Controller
 {
     /** @var Cartalyst\Sentinel\Users\IlluminateUserRepository */
@@ -75,7 +76,9 @@ class UserController extends Controller
             'email' => trim($request->get('email')),
             'password' => $request->get('password'),
             'first_name' => $request->get('first_name', null),
-            'last_name' => $request->get('last_name', null)
+            'last_name' => $request->get('last_name', null),
+			'department_id' => $request->get('department_id', null),
+			'car_id' => $request->get('car_id', null)
         ];
         $activate = (bool)$request->get('activate', false);
 
@@ -86,7 +89,7 @@ class UserController extends Controller
             return $result->dispatch;
         }
 
-        // Do we need to send an activation email?
+     /*   // Do we need to send an activation email?
         if (!$activate) {
             $code = $result->activation->getCode();
             $email = $result->user->email;
@@ -98,7 +101,7 @@ class UserController extends Controller
                         ->subject('Your account has been created');
                 }
             );
-        }
+        }*/
 
         // Assign User Roles
         foreach ($request->get('roles', []) as $slug => $id) {
@@ -108,7 +111,7 @@ class UserController extends Controller
             }
         }
 
-        $result->setMessage("User {$request->get('email')} has been created.");
+       /* $result->setMessage("User {$request->get('email')} has been created.");*/
         return $result->dispatch(route('users.index'));
     }
 
@@ -173,7 +176,9 @@ class UserController extends Controller
         $attributes = [
             'email' => trim($request->get('email')),
             'first_name' => $request->get('first_name', null),
-            'last_name' => $request->get('last_name', null)
+            'last_name' => $request->get('last_name', null),
+			'department_id' => $request->get('department_id', null),
+			'car_id' => $request->get('car_id', null)
         ];
 
         // Do we need to update the password as well?
