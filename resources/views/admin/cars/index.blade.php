@@ -41,7 +41,7 @@
 							<td>{{ $vozilo->zadnja_registracija }} </td>
 							<td>{{ $vozilo->trenutni_kilometri }} </td>
 							<td>{{ $vozilo->zadnji_servis }} </td>
-							<td>{{ $vozilo->user['first_name'] }} </td>
+							<td>{{ $vozilo->user['first_name'] . " " . $vozilo->user['last_name'] }} </td>
 							<td>{{ $vozilo->department['name'] }} </td>
                             <td>
                                 <a href="{{ route('admin.cars.edit', $vozilo->id) }}" class="btn btn-default ">

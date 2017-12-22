@@ -44,7 +44,7 @@
 							<td>{{ $locco->početni_kilometri }} </td>
 							<td>{{ $locco->završni_kilometri }} </td>
 							<td>{{ $locco->prijeđeni_kilometri }} </td>
-							<td>{{ $locco->komentar }} </td>
+							<td>{{ $locco->Komentar }} </td>
 							
                             <td>
                                 <a href="{{ route('admin.loccos.edit', $locco->id) }}" class="btn btn-default ">

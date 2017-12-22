@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Dodaj locco')
+@section('title', 'Ispravi locco')
 
 <head>
   <title></title>
@@ -15,18 +15,21 @@
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading" id="nav">
-                <h3 class="panel-title">Upiši novu locco vožnju</h3>
+                <h3 class="panel-title">Ispravi podatke locco vožnje</h3>
             </div>
             <div class="panel-body">
-                <form accept-charset="UTF-8" role="form" method="post" action="{{ route('admin.loccos.store') }}">
+                <form accept-charset="UTF-8" role="form" method="post" action="{{ route('admin.loccos.update', $locco->id) }}">
                 <fieldset>
                     <div class="form-group {{ ($errors->has('vozilo_id')) ? 'has-error' : '' }}">
                         <text>Vozilo</text>
-						<select class="form-control" name="vozilo_id" id="sel1" value="{{ old('vozilo_id') }}" >
+						<select class="form-control" name="vozilo_id" id="sel1" value="" >
 							<option disabled selected value> </option>
 							@foreach (DB::table('cars')->get() as $car)
 								<option name="vozilo_id" value=" {{ $car->id }} ">{{ $car->registracija }}</option>
 							@endforeach
+							<option selected="selected" value="{{  $vozilo->department_id }}">
+								{{ $vozilo->department['name'] }}
+							</option>
 						</select>
 						{!! ($errors->has('vozilo_id') ? $errors->first('vozilo_id', '<p class="text-danger">:message</p>') : '') !!}
                     </div>

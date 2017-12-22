@@ -82,7 +82,9 @@ class LoccoController extends Controller
      */
     public function show($id)
     {
-        //
+        $locco = Locco::find($id);
+		
+		return view('admin.loccos.show', ['locco' => $locco]);
     }
 
     /**
@@ -93,7 +95,9 @@ class LoccoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $locco = Locco::find($id);
+		
+		return view('admin.loccos.edit', ['locco' => $locco]);
     }
 
     /**
