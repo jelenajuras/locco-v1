@@ -41,7 +41,7 @@
 							@foreach (DB::table('departments')->get() as $odjel)
 							<option name="department_id" value=" {{ $odjel->id }} ">{{ $odjel->name }}</option>
 							@endforeach
-							<option selected="selected" value="{{ $user->department_id }}">
+							<option selected="selected" name="department_id" value="{{ $user->department_id }}">
 							
 							</option>
 						</select>
@@ -53,7 +53,7 @@
 							@foreach (DB::table('cars')->get() as $vozilo)
 							<option name="car_id" value=" {{ $vozilo->id }} ">{{ $vozilo->registracija }}</option>
 							@endforeach
-							<option selected="selected" value="{{$user->car_id}}">
+							<option selected="selected" name="car_id" value="{{$user->car_id}}">
 								
 							</option>
 						</select>

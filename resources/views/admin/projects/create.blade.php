@@ -2,10 +2,12 @@
 
 @section('title', 'Dodaj novi projekt')
 
+
 @section('content')
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
+		
             <div class="panel-heading" id="nav">
                 <h3 class="panel-title">Upiši novi projekt</h3>
             </div>
@@ -25,6 +27,7 @@
 								<option name="customer_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach
 						</select>
+						{!! ($errors->has('customer_id') ? $errors->first('customer_id', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
 						<text>Investitor</text>

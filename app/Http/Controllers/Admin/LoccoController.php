@@ -109,7 +109,28 @@ class LoccoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $locco = Locco::find($id);
+		$input = $request;
+		
+		$data = array(
+			'datum'  => $input['datum'],
+			'vozilo_id'  => $input['vozilo_id'],
+			'user_id'  => Sentinel::getUser()->id,
+			'relacija'  => $input['relacija'],
+			'projekt_id'  => $input['projekt_id'],
+			'razlog_puta'  => $input['razlog'],
+			'početni_kilometri'  => $input['početni_kilometri'],
+			'završni_kilometri'  => $input['završni_kilometri'],
+			'prijeđeni_kilometri'  => $input['završni_kilometri']-$input['početni_kilometri'],
+			'Komentar'  => $input['Komentar']
+		);
+		
+		$locco->updateLocco($data);
+		
+		$message = session()->flash('success', 'Uspješno su ispravljeni podaci locco vožnje');
+		
+		//return redirect()->back()->withFlashMessage($messange);
+		return redirect()->route('admin.loccos.index')->withFlashMessage($message);
     }
 
     /**
@@ -120,6 +141,11 @@ class LoccoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $locco = Locco::find($id);
+		$locco->delete();
+		
+		$message = session()->flash('success', 'Locco vožnja je uspješno obrisana');
+		
+		return redirect()->route('admin.loccos.index')->withFlashMessage($message);
     }
 }

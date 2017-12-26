@@ -57,7 +57,7 @@
                     </div>
 					<div class="form-group">
                         <input class="form-control" placeholder="Razlog puta" name="razlog" type="text" value="{{ old('razlog') }}" />
-						{!! ($errors->has('razlog') ? $errors->first('razlog', '<p class="text-danger">:message</p>') : '') !!}
+						
                     </div>
 					<div class="form-group">
                         <text>Projekt</text>

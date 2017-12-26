@@ -33,6 +33,7 @@ class ProjectRequest extends FormRequest
 	public function messages()
 	{
 		return [
+			
 			'id.required' 		   => 'Unos broja projekta je obavezan!',
 			'id.min' 		   	   => 'Broj projekta mora imati minimalno 4 znamenke!',
 			'customer_id.required' => 'Unos naručitelja je obavezan!',

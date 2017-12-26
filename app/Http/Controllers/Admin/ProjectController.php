@@ -101,7 +101,7 @@ class ProjectController extends Controller
 		$input = $request;
 		
 		$data = array(
-			'id'			 => $input['id'],
+			
 			'customer_id'    => $input['customer_id'],
 			'investitor_id'  => $input['investitor_id'],
 			'naziv'			 => $input['naziv']
@@ -130,6 +130,4 @@ class ProjectController extends Controller
 		
 		return redirect()->route('admin.projects.index')->withFlashMessage($message);
     }
-
-
 }

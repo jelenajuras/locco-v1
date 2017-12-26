@@ -1,8 +1,9 @@
 @extends('layouts.admin')
 
 @section('title', 'Ispravi vozilo')
+
 <head>
-  <title>Laravel Bootstrap Datepicker</title>
+  <title></title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -70,8 +71,8 @@
                     </div> -->
 					<div class="form-group">
 						<text>Odjel</text>
-						<select class="form-control" name="department_id" value="">
-							<option disabled selected value> </option>
+						<select class="form-control" name="department_id" value="0">
+							<option disabled selected value></option>
 							@foreach (DB::table('departments')->get() as $odjel)
 								<option name="department_id" value="{{ $odjel->id }} ">{{ $odjel->name }}</option>
 							@endforeach
@@ -82,7 +83,7 @@
                     </div>
 					<div class="form-group">
 						<text>Djelatnik</text>
-						<select class="form-control" name="user_id" value="">
+						<select class="form-control" name="user_id" value="0">
 							<option disabled selected value></option>
 							@foreach (DB::table('users')->get() as $user)
 								<option name="user_id" value="{{ $user->id }} ">{{ $user->first_name . " " . $user->last_name }}</option>

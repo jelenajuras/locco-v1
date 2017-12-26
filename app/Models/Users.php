@@ -6,6 +6,16 @@ use Cartalyst\Sentinel\Users\EloquentUser;
 
 class Users extends EloquentUser
 {
+	protected $fillable = [
+        'email',
+        'password',
+        'last_name',
+        'first_name',
+        'permissions',
+		'department_id',
+		'user_id'
+    ];
+	
 	/*
 	* The Eloquent post model names
 	* 

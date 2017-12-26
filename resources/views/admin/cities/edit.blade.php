@@ -14,7 +14,7 @@
                 <fieldset>
                     <div class="form-group {{ ($errors->has('id')) ? 'has-error' : '' }}">
                         <input class="form-control" placeholder="Poštanski broj" name="id" type="text" value="{{ $grad->id }}" />
-                        {!! ($errors->has('id') ? $errors->first('id', '<p class="text-danger">:message</p>') : '') !!}
+						{!! ($errors->has('id') ? $errors->first('id', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
                         <input class="form-control" placeholder="Grad" name="grad" type="text" value="{{ $grad->grad }}" />

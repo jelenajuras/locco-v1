@@ -102,5 +102,5 @@ class Project extends Model
 	public function updateProject($project=array())
 	{
 		return $this->update($project);
-	}	
+	}
 }

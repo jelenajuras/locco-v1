@@ -27,9 +27,11 @@
 							@foreach (DB::table('cars')->get() as $car)
 								<option name="vozilo_id" value=" {{ $car->id }} ">{{ $car->registracija }}</option>
 							@endforeach
-							<option selected="selected" value="{{  $vozilo->department_id }}">
-								{{ $vozilo->department['name'] }}
+							@if ($locco->vozilo_id)
+							<option selected="selected" value="{{  $locco->vozilo_id }}">
+								{{ $locco->car['registracija'] }}
 							</option>
+							@endif
 						</select>
 						{!! ($errors->has('vozilo_id') ? $errors->first('vozilo_id', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
@@ -45,22 +47,22 @@
 					</script> 
 					<div class="form-group {{ ($errors->has('user_id'))  ? 'has-error' : '' }}">
                         <text>Vozač</text>
-						<select class="form-control" name="user_id" id="sel1" value="{{ old('user_id') }}">
+						<select class="form-control" name="user_id" id="sel1">
 							@foreach (DB::table('users')->get() as $user)
 								<option name="user_id" value=" {{ $user->id }} ">{{ $user->first_name . ' ' . $user->last_name }}</option>
 							@endforeach	
-							<option selected="selected" value="{{ Sentinel::getUser()->id }}">
-								{{ Sentinel::getUser()->first_name . ' '. Sentinel::getUser()->last_name }}
+							<option selected="selected"  value="{{ $locco->user_id }}">
+								{{ $locco->user['first_name'] . ' '. $locco->user['first_name'] }}
 							</option>
 						</select>
                     </div>
 					<div class="form-group">
-                        <input class="form-control" placeholder="Relacija" name="relacija" type="text" value="{{ old('relacija') }}" />
+                        <input class="form-control" placeholder="Relacija" name="relacija" type="text" value="{{ $locco->relacija }}" />
 						{!! ($errors->has('relacija') ? $errors->first('relacija', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
-                        <input class="form-control" placeholder="Razlog puta" name="razlog" type="text" value="{{ old('razlog') }}" />
-						{!! ($errors->has('razlog') ? $errors->first('razlog', '<p class="text-danger">:message</p>') : '') !!}
+                        <input class="form-control" placeholder="Razlog puta" name="razlog" type="text" value="{{ $locco->razlog_puta }}" />
+						
                     </div>
 					<div class="form-group">
                         <text>Projekt</text>
@@ -69,20 +71,29 @@
 							@foreach (DB::table('projects')->get() as $project)
 								<option name="projekt_id" value=" {{ $project->id }} ">{{ $project->id . " - " . $project->naziv }}</option>
 							@endforeach	
+							@if ($locco->projekt_id)
+							<option selected="selected" value="{{  $locco->projekt_id }}">
+								{{ $locco->projekt_id . ' ' . $locco->project['naziv'] }}
+							</option>
+							@endif
 						</select>
                     </div>
 					<div class="form-group">
-                        <input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" value="{{ old('početni_kilometri') }}" />
+                        <input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" value="{{ $locco->početni_kilometri }}" />
 						{!! ($errors->has('početni_kilometri') ? $errors->first('početni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
-                        <input class="form-control" placeholder="Završni kilometri" name="završni_kilometri" type="text" value="{{ old('završni_kilometri') }}" />
+                        <input class="form-control" placeholder="Završni kilometri" name="završni_kilometri" type="text" value="{{ $locco->završni_kilometri }}" />
 						{!! ($errors->has('završni_kilometri') ? $errors->first('završni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
-                        <textarea class="form-control" placeholder="Komentar" name="Komentar" value="{{ old('Komentar') }}"></textarea>
+                        <textarea class="form-control" placeholder="Komentar" name="Komentar" value="{{ $locco->Komentar }}"></textarea>
 					</div>
 				
+				
+					{{ csrf_field() }}
+					{{ method_field('PUT') }}
+					
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
                     <input class="btn btn-lg btn-primary btn-block" type="submit" value="Upiši" id="nav">
                 </fieldset>

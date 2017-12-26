@@ -9,7 +9,7 @@ use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Users\IlluminateUserRepository;
 use App\Http\Controllers\Controller;
-
+use App\Models\User;
 
 class UserController extends Controller
 {

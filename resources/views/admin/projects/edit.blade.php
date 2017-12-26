@@ -12,7 +12,7 @@
             <div class="panel-body">
                 <form accept-charset="UTF-8" role="form" method="post" action="{{ route('admin.projects.update', $project->id) }}">
                 <fieldset>
-					<div class="form-group {{ ($errors->has('id')) ? 'has-error' : '' }}">
+						<div class="form-group {{ ($errors->has('id')) ? 'has-error' : '' }}">
 						<text>Broj projekta</text>
                         <input class="form-control" placeholder="Broj projekta" name="id" type="text" value="{{ $project->id }}" />
                         {!! ($errors->has('id') ? $errors->first('id', '<p class="text-danger">:message</p>') : '') !!}
@@ -23,21 +23,25 @@
 							@foreach (DB::table('customers')->get() as $customer)
 								<option name="customer_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach
+							@if ($project->customer_id)
 							<option selected="selected"  value="{{ $project->customer_id }}">
 								{{$project->narucitelj['naziv']}}
 							</option>
+							@endif
 						</select>
                     </div>
 					<div class="form-group">
 						<text>Investitor</text>
-						<select class="form-control" name="investitor_id"  id="sel1">
-							<option value="" disabled selected>Investitor</option>
+						<select class="form-control" name="investitor_id" value="" id="sel1">
+							<option disabled selected></option>
 							@foreach (DB::table('customers')->get() as $customer)
 								<option name="investitor_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach
+							@if ($project->investitor_id)
 							<option selected="selected" value="{{ $project->investitor_id }}">
 								{{$project->investitor['naziv']}}
 							</option>
+							@endif
 						</select>
                     </div>
                     <div class="form-group {{ ($errors->has('naziv')) ? 'has-error' : '' }}">

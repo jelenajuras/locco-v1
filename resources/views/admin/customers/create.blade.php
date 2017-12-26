@@ -25,14 +25,14 @@
 					
 					<div class="form-group">
 					<text>Grad</text>
-						<select class="form-control" name="grad_id" id="sel1" >
+						<select class="form-control" name="grad_id">
 							<option disabled selected value></option>
-							@foreach (DB::table('cities')->get() as $city)
-							<option name="grad_id" value=" {{$city->id}} ">{{ $city->grad }}</option>
+							@foreach (DB::table('cities')->orderBy('grad','ASC')->get() as $city)
+							<option name="grad_id" value=" {{ $city->id }} ">{{ $city->grad }}</option>
 							@endforeach
 						</select>
+						{!! ($errors->has('grad_id') ? $errors->first('grad_id', '<p class="text-danger">:message</p>') : '') !!}
 					</div>
-
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
                     <input class="btn btn-lg btn-primary btn-block" type="submit" value="Upiši"  id="nav">
                 </fieldset>

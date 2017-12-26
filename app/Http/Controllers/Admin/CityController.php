@@ -104,7 +104,6 @@ class CityController extends Controller
 		$input = $request;
 		
 		$data = array(
-			'id'  => $input['grad_id'],
 			'grad'  => $input['grad']
 		);
 		
