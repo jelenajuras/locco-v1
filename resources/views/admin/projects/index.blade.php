@@ -1,15 +1,6 @@
 @extends('layouts.admin')
 
 @section('title', 'Projekti')
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-
 
 @section('content')
     <div class="page-header">
@@ -20,11 +11,11 @@
             </a>
         </div>
         <h1>Projekti</h1>
+		<input class="form-control" id="myInput" type="text" placeholder="Traži..">
     </div>
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		<input class="form-control" id="myInput" type="text" placeholder="Traži..">
             <div class="table-responsive">
 			@if(count($projects) > 0)
                 <table class="table table-hover">

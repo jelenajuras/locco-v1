@@ -10,25 +10,7 @@
 		background-color: rgb(77, 77, 77);
 		color: rgb(255, 133, 51);
 	}
-	#nav1 {
-		color: rgb(255, 133, 51);
-	}
-	#textGrey {
-		color: rgb(77, 77, 77);
-	}
-	#inv1 {
-		background-color: rgb(128,128,128);
-		border-color:rgb(77, 77, 77);
-		color:white;
-	}
-	#h3 {
-		background-color: rgb(166, 166, 166);
-	}
-	#border1 {
-    	border-style: solid;
-   	 	border-width: 5px;
-		border-color:rgb(77, 77, 77);
-	}
+	
 </style>
 
 @section('content')

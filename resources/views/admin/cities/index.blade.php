@@ -11,6 +11,7 @@
             </a>
         </div>
         <h1>Gradovi</h1>
+		<input class="form-control" id="myInput" type="text" placeholder="Traži..">
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -24,7 +25,7 @@
                             <th>Options</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="myTable">
 					@foreach ($gradovi as $grad)
                         <tr>
 							<td>{{ $grad->grad }}</td>
@@ -41,6 +42,16 @@
                             </td>
                         </tr>
                     @endforeach
+					<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+						var value = $(this).val().toLowerCase();
+						$("#myTable tr").filter(function() {
+						  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+						});
+					  });
+					});
+				</script>
                     </tbody>
                 </table>
 				@else

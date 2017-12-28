@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
-
 use DB;
 use Mail;
 use Session;
@@ -11,12 +9,10 @@ use App\Http\Requests;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 class PasswordController extends Controller
 {
     /** @var Centaur\AuthManager */
     protected $authManager;
-
     /**
      * Create a new authentication controller instance.
      *
@@ -27,7 +23,6 @@ class PasswordController extends Controller
         $this->middleware('sentinel.guest');
         $this->authManager = $authManager;
     }
-
     /**
      * Show the password reset request form
      * @return View
@@ -36,7 +31,6 @@ class PasswordController extends Controller
     {
         return view('auth.reset');
     }
-
     /**
      * Send a password reset link
      * @return Response|Redirect
@@ -47,15 +41,12 @@ class PasswordController extends Controller
         $result = $this->validate($request, [
             'email' => 'required|email|max:255'
         ]);
-
         // Fetch the user in question
         $user = Sentinel::findUserByCredentials(['email' => $request->get('email')]);
-
         // Only send them an email if they have a valid, inactive account
         if ($user) {
             // Generate a new code
             $reminder = Reminder::create($user);
-
             // Send the email
             $code = $reminder->code;
             $email = $user->email;
@@ -68,18 +59,13 @@ class PasswordController extends Controller
                 }
             );
         }
-
         $message = 'Instructions for changing your password will be sent to your email address if it is associated with a valid account.';
-
         if ($request->ajax()) {
             return response()->json(['message' => $message, 'code' => $code], 200);
         }
-
         Session::flash('success', $message);
         return redirect()->route('index');
     }
-
-
     /**
      * Show the password reset form if the reset code is valid
      * @param  Request $request
@@ -95,11 +81,9 @@ class PasswordController extends Controller
             Session::flash('error', 'Invalid or expired password reset code; please request a new link.');
             return redirect()->route('index');
         }
-
         return view('auth.password')
             ->with('code', $code);
     }
-
     /**
      * Process a password reset form submission
      * @param  Request $request
@@ -112,18 +96,14 @@ class PasswordController extends Controller
         $result = $this->validate($request, [
             'password' => 'required|confirmed|min:8',
         ]);
-
         // Attempt the password reset
         $result = $this->authManager->resetPassword($code, $request->get('password'));
-
         if ($result->isFailure()) {
             return $result->dispatch();
         }
-
         // Return the appropriate response
         return $result->dispatch(route('auth.login.form'));
     }
-
     /**
      * @param  string $code
      * @return boolean

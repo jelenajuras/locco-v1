@@ -87,7 +87,7 @@
 						{!! ($errors->has('završni_kilometri') ? $errors->first('završni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
-                        <textarea class="form-control" placeholder="Komentar" name="Komentar" value="{{ $locco->Komentar }}"></textarea>
+                        <textarea class="form-control" placeholder="Komentar" name="Komentar" value="{{ $locco->Komentar }}">{{ $locco->Komentar }}</textarea>
 					</div>
 				
 				

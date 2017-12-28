@@ -47,15 +47,6 @@ Route::group(['prefix' => 'admin'], function () {
   // Roles
   Route::resource('roles', 'Admin\RoleController');
   //Posts
-  Route::resource('posts', 'Admin\PostController', ['names' => [
-  'index' 		=> 'admin.posts.index', 
-  'create' 		=> 'admin.posts.create', 
-  'store' 		=> 'admin.posts.store', 
-  'show' 		=> 'admin.posts.show', 
-  'edit' 		=> 'admin.posts.edit', 
-  'update'		=> 'admin.posts.update', 
-  'destroy'		=> 'admin.posts.destroy'
-  ]]);
   Route::resource('cities', 'Admin\CityController', ['names' => [
   'index' 		=> 'admin.cities.index', 
   'create' 		=> 'admin.cities.create', 

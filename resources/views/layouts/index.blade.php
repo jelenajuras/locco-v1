@@ -32,7 +32,7 @@
 	#inv1 {
 		background-color: rgb(128,128,128);
 		border-color:rgb(77, 77, 77);
-		color:white;
+		color:rgb(255, 133, 51);
 	}
 	#h3 {
 		background-color: rgb(166, 166, 166);
@@ -41,6 +41,9 @@
     	border-style: solid;
    	 	border-width: 5px;
 		border-color:rgb(77, 77, 77);
+	}
+		thead {
+		font-size:70%;
 	}
 </style>
 

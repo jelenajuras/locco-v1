@@ -46,9 +46,6 @@
 					{{'Nema unesenih odjela!'}}
 				@endif
             </div>
-	
-	
-	
 		</div>
     </div>
 

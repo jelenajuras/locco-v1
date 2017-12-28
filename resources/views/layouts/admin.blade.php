@@ -17,10 +17,17 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-		
 		@stack('stylesheet')
-    </head>
-	
+
+</head>
+<head>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+</head>
+
 <style>
 	body {
 		background-color: rgb(230, 230, 230);
@@ -48,6 +55,16 @@
    	 	border-width: 5px;
 		border-color:rgb(77, 77, 77);
 	}
+	thead {
+		font-size:75%;
+		
+	}
+	th {
+		text-align: center;
+	}
+	#myTable {
+		font-size:100%;
+	}
 </style>
 	
     <body>
@@ -66,7 +83,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}" id="nav1">Dashboard</a></li>
+                        <!-- <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}" id="nav1">Dashboard</a></li> -->
                         @if (Sentinel::check() && Sentinel::inRole('administrator'))
                             <li class="{{ Request::is('admin/users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}" id="nav1">Djelatnici</a></li>
                             <li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('roles.index') }}" id="nav1">Dozvole</a></li>
@@ -78,12 +95,12 @@
                         @endif
 						
 						<li class=""><a href="{{ route('admin.loccos.index') }}" id="nav1">Locco vožnja</a></li>
-						<li class="{{ Request::is('admin/comments*') ? 'active' : '' }}"><a href="#" id="nav1">Comments <span class="badge">{{ 2 }}</span></a></li>
+						
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if (Sentinel::check())
                           <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="user"></span> {{ Sentinel::getUser()->email }} <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="nav1"><span class="user"></span> {{ Sentinel::getUser()->first_name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                               <li><a href="{{ route('auth.logout') }}" id="nav1">Odjava</a></li>
                             </ul>
@@ -93,12 +110,15 @@
                             <li><a href="{{ route('auth.register.form') }}" id="nav1">Registracija</a></li>
                         @endif   
                     </ul>
+					
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
+			
         </nav>
         <div class="container">
             @include('notifications')
             @yield('content')
+			
         </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -108,5 +128,7 @@
         <!-- Restfulizer.js - A tool for simulating put,patch and delete requests -->
         <script src="{{ asset('js/restfulizer.js') }}"></script>
 		@stack('script')
+		
+		
     </body>
 </html>

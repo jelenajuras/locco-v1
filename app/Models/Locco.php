@@ -85,4 +85,6 @@ class Locco extends Model
 	{
 		return $this->update($locco);
 	}	
+	
+	
 }

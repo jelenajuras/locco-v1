@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Post;
+use App\Models\Locco;
 
 class HomeController extends Controller
 {
@@ -25,10 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-		$posts = Post::all();
+		$locco = Locco::all();
 
 		
-        return view('user.home',['posts'=>$posts]);
+        return view('user.home',['locco'=>$locco]);
     }
 	
 	

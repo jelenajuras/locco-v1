@@ -56,11 +56,11 @@ class LoccoController extends Controller
 			'datum'  => $input['datum'],
 			'vozilo_id'  => $input['vozilo_id'],
 			'user_id'  => Sentinel::getUser()->id,
-			'relacija'  => $input['relacija'],
+			'relacija'  => ucfirst(strtolower($input['relacija'])),
 			'projekt_id'  => $input['projekt_id'],
 			'razlog_puta'  => $input['razlog'],
-			'početni_kilometri'  => $input['početni_kilometri'],
-			'završni_kilometri'  => $input['završni_kilometri'],
+			'početni_kilometri'  => trim($input['početni_kilometri']),
+			'završni_kilometri'  => trim($input['završni_kilometri']),
 			'prijeđeni_kilometri'  => $input['završni_kilometri']-$input['početni_kilometri'],
 			'Komentar'  => $input['Komentar']
 		);
@@ -116,11 +116,11 @@ class LoccoController extends Controller
 			'datum'  => $input['datum'],
 			'vozilo_id'  => $input['vozilo_id'],
 			'user_id'  => Sentinel::getUser()->id,
-			'relacija'  => $input['relacija'],
+			'relacija'  => ucfirst(strtolower($input['relacija'])),
 			'projekt_id'  => $input['projekt_id'],
 			'razlog_puta'  => $input['razlog'],
-			'početni_kilometri'  => $input['početni_kilometri'],
-			'završni_kilometri'  => $input['završni_kilometri'],
+			'početni_kilometri'  => trim($input['početni_kilometri']," "),
+			'završni_kilometri'  => trim($input['završni_kilometri']," "),
 			'prijeđeni_kilometri'  => $input['završni_kilometri']-$input['početni_kilometri'],
 			'Komentar'  => $input['Komentar']
 		);

@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', 'Roles')
+@section('title', 'Dozvole')
 
 @section('content')
     <div class="page-header">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('roles.create') }}" id="nav">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>
-                Create Role
+                Unesi dozvolu
             </a>
         </div>
-        <h1>Roles</h1>
+        <h1>Dozvole</h1>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

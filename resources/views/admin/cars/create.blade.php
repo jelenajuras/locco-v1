@@ -3,7 +3,7 @@
 @section('title', 'Dodaj novo vozilo')
 
 <head>
-  <title>Laravel Bootstrap Datepicker</title>
+  <title></title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -38,16 +38,16 @@
                     </div>
 					
 					<div class="form-group">
-						<input class="date form-control" placeholder="Prva registracija" type="text" name="prva_registracija" value="{{ old('prva_registracija') }}">
+						<input class="date form-control" placeholder="Prva registracija" type="text" name="prva_registracija" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 						{!! ($errors->has('prva_registracija') ? $errors->first('prva_registracija', '<p class="text-danger">:message</p>') : '') !!}
 					</div>
 					<script type="text/javascript">
 						$('.date').datepicker({  
 						   format: 'yyyy-mm-dd'
 						 });  
-					</script>  
+					</script> 
 					<div class="form-group">
-						<input class="date form-control" placeholder="Zadnja registracija" type="text" name="zadnja_registracija" value="{{ old('zadnja_registracija') }}">
+						<input class="date form-control" placeholder="Zadnja registracija" type="text" name="zadnja_registracija" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 						{!! ($errors->has('zadnja_registracija') ? $errors->first('zadnja_registracija', '<p class="text-danger">:message</p>') : '') !!}
 					</div>
 					<script type="text/javascript">
@@ -56,7 +56,7 @@
 						 });  
 					</script> 
 					<div class="form-group">
-						<input class="date form-control" placeholder="Zadnji servis" type="text" name="zadnji_servis" value="{{ old('zadnji_servis') }}">
+						<input class="date form-control" placeholder="Zadnji servis" type="text" name="zadnji_servis" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 						{!! ($errors->has('zadnji_servis') ? $errors->first('zadnji_servis', '<p class="text-danger">:message</p>') : '') !!}
 					</div>
 					<script type="text/javascript">
@@ -87,8 +87,7 @@
 							@endforeach
 						</select>
                     </div>
-					
-					
+
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
                     <input class="btn btn-lg btn-primary btn-block" type="submit" value="Upiši" id="nav">
                 </fieldset>

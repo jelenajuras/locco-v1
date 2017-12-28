@@ -12,7 +12,9 @@
         "vinkla/hashids": "^2.4",
         "guzzlehttp/guzzle": "^6.2",
         "cviebrock/eloquent-sluggable": "^4.1",
-        "doctrine/dbal": "^2.6"
+        "doctrine/dbal": "^2.6",
+		"simplesoftwareio/simple-qrcode": "~2",
+        "libern/qr-code-reader": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

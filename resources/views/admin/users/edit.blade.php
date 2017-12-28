@@ -42,22 +42,22 @@
 							<option name="department_id" value=" {{ $odjel->id }} ">{{ $odjel->name }}</option>
 							@endforeach
 							<option selected="selected" name="department_id" value="{{ $user->department_id }}">
-							
+							{{ $user->department['name'] }}
 							</option>
 						</select>
                     </div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<text>Vozilo</text>
                         <select class="form-control" name="car_id" id="sel1" >
 							<option disabled selected value></option>
 							@foreach (DB::table('cars')->get() as $vozilo)
 							<option name="car_id" value=" {{ $vozilo->id }} ">{{ $vozilo->registracija }}</option>
 							@endforeach
-							<option selected="selected" name="car_id" value="{{$user->car_id}}">
-								
+							<option selected="selected" name="car_id" value="{{ $user->car_id }}">
+								{{ $user->car['registracija'] }}
 							</option>
 						</select>
-                    </div>
+                    </div> -->
 				
                     <div class="form-group  {{ ($errors->has('password')) ? 'has-error' : '' }}">
                         <input class="form-control" placeholder="Password" name="password" type="password" value="">

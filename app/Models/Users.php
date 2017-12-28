@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Models;
 
 use Cartalyst\Sentinel\Users\EloquentUser;
-
 class Users extends EloquentUser
 {
 	protected $fillable = [

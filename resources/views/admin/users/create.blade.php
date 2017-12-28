@@ -43,7 +43,7 @@
 							@endforeach
 						</select>
                     </div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<text>Vozilo</text>
                         <select class="form-control" name="car_id" id="sel1" >
 							<option disabled selected value></option>
@@ -51,7 +51,7 @@
 							<option name="car_id" value=" {{ $vozilo->id }} ">{{ $vozilo->registracija }}</option>
 							@endforeach
 						</select>
-                    </div>
+                    </div> -->
                       
                     
                     <div class="form-group  {{ ($errors->has('password')) ? 'has-error' : '' }}">
