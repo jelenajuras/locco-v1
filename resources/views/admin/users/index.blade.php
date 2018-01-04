@@ -3,14 +3,14 @@
 @section('title', 'Djelatnici')
 
 @section('content')
-    <div class="page-header">
+    <div class="page-header" style="margin-top:80px">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('users.create') }}" id="nav">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 Dodaj novog korisnika
             </a>
         </div>
-        <h1>Users</h1>
+        <h1>Djelatnici</h1>
 		<input class="form-control" id="myInput" type="text" placeholder="Traži..">
     </div>
     <div class="row">
@@ -22,8 +22,8 @@
 								<th>Avatar</th>
 								<th>Ime i prezime</th>
 								<th>email</th>
-								<th>Odjel</th>
-								<th>Vozilo</th>
+								<!--<th>Odjel</th>-->
+								<th>Vozilo</th> 
 								<th>Uloge</th>
 								<th>Opcije</th>
 							</tr>
@@ -34,8 +34,8 @@
 								<td><img src="//www.gravatar.com/avatar/{{ md5($user->email) }}?d=mm" alt="{{ $user->email }}" class="img-circle"></td>
 								<td>{{ $user->first_name . " ". $user->last_name }}</td>
 								<td>{{ $user->email }}</td>
-								<td value="{{ $user->department_id}}">{{ $user->department['name'] }}</td>
-								<td value="{{ $user->car_id}}">{{ $user->car['registracija'] }}</td>
+								<!--<td>{{ $user->department['name'] }}</td>-->
+								<td>{{ $user->car['registracija'] }}</td>
 								<td>@if ($user->roles->count() > 0)
 									{{ $user->roles->implode('name', ', ') }}
 								@else

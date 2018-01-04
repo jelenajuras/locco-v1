@@ -59,8 +59,8 @@ class LoccoController extends Controller
 			'relacija'  => ucfirst(strtolower($input['relacija'])),
 			'projekt_id'  => $input['projekt_id'],
 			'razlog_puta'  => $input['razlog'],
-			'početni_kilometri'  => trim($input['početni_kilometri']),
-			'završni_kilometri'  => trim($input['završni_kilometri']),
+			'početni_kilometri'  => $input['početni_kilometri'],
+			'završni_kilometri'  => $input['završni_kilometri'],
 			'prijeđeni_kilometri'  => $input['završni_kilometri']-$input['početni_kilometri'],
 			'Komentar'  => $input['Komentar']
 		);

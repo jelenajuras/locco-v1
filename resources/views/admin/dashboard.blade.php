@@ -9,10 +9,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 </head>
 @section('content')
-<div class="row">
+<div class="row" style="margin-top:80px">
     @if (Sentinel::check())
-
-        <h2>Bok, {{ Sentinel::getUser()->first_name }}! Prijavljen/a si!</h2>
+		@if(Sentinel::getUser()->first_name)
+			<h2>Bok, {{ Sentinel::getUser()->first_name }}! Prijavljen/a si!</h2>
+		@else
+			<h2>Bok, {{ Sentinel::getUser()->email }}! Prijavljen/a si!</h2>
+		@endif
         <p></p>
 
 <div class="row">
@@ -26,18 +29,18 @@
                 <fieldset>
                     <div class="form-group {{ ($errors->has('vozilo_id')) ? 'has-error' : '' }}">
                         <text>Vozilo</text>
-						<!--<select class="form-control" name="vozilo_id" id="sel1" value="{{ old('vozilo_id') }}" >  
-						
-						
-							 <option disabled selected value>Izaberi vozilo</option>
+						<select class="form-control" name="vozilo_id" id="sel1" value="{{ old('vozilo_id') }}" >  
+						@if(DB::table('cars')->where('user_id',Sentinel::getUser()->id)->value('registracija'))
+							<option selected="selected" value="{{ DB::table('cars')->where('user_id',Sentinel::getUser()->id)->value('id') }}">
+								{{ DB::table('cars')->where('user_id',Sentinel::getUser()->id)->value('registracija') }}
+							</option>
+						@else
+							<option value="0">Izaberi vozilo</option>
+						@endif
 							@foreach (DB::table('cars')->get() as $car)
 								<option name="vozilo_id" value=" {{ $car->id }} ">{{ $car->registracija }}</option>
-							@endforeach
-							 <option selected="selected" value="{{ Sentinel::getUser()->car_id }}">
-								{{ Sentinel::getUser()->car['registracija'] }}  
-						</option>
-						</select>-->
-						
+							@endforeach 
+						</select>
                     </div>
 					<div class="form-group">
 						<text>Datum vožnje</text>
@@ -52,7 +55,7 @@
 					<div class="form-group {{ ($errors->has('user_id'))  ? 'has-error' : '' }}">
                         <text>Vozač</text>
 						<select class="form-control" name="user_id" id="sel1" value="{{ old('user_id') }}">
-							@foreach (DB::table('users')->get() as $user)
+							@foreach (DB::table('users')->orderBy('last_name','ASC')->get() as $user)
 								<option name="user_id" value=" {{ $user->id }} ">{{ $user->first_name . ' ' . $user->last_name }}</option>
 							@endforeach	
 							<option selected="selected" value="{{ Sentinel::getUser()->id }}">
@@ -61,25 +64,26 @@
 						</select>
                     </div>
 					<div class="form-group">
+						<text>Relacija</text>
                         <input class="form-control" placeholder="Relacija" name="relacija" type="text" value="{{ old('relacija') }}" />
 						{!! ($errors->has('relacija') ? $errors->first('relacija', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
+					<text>Razlog puta</text>
                         <input class="form-control" placeholder="Razlog puta" name="razlog" type="text" value="{{ old('razlog') }}" />
-						
                     </div>
 					<div class="form-group">
                         <text>Projekt</text>
-						<select class="form-control" name="projekt_id" id="sel1">
-							<option disabled selected value>Izaberi projekt</option>
-							@foreach (DB::table('projects')->get() as $project)
+						<select class="form-control" name="projekt_id" id="sel1" value="{{ old('projekt_id') }}">
+							<option value="0"></option>
+							@foreach (DB::table('projects')->orderBy('id','ASC')->get() as $project)
 								<option name="projekt_id" value=" {{ $project->id }} ">{{ $project->id . " - " . $project->naziv }}</option>
 							@endforeach	
 						</select>
                     </div>
 					<div class="form-group">
 						<text>Početni kilometri</text>
-                        <input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text"/> <!--value="{{ intval (Sentinel::getUser()->car['trenutni_kilometri']) }}"  -->
+                        <input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" value="{{ old('početni_kilometri') }}" />
 						{!! ($errors->has('početni_kilometri') ? $errors->first('početni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">

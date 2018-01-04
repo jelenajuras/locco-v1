@@ -11,7 +11,7 @@
 </head>
 
 @section('content')
-<div class="row">
+<div class="row" style="margin-top:80px">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading" id="nav">
@@ -72,26 +72,32 @@
 					<div class="form-group">
 						<text>Odjel</text>
 						<select class="form-control" name="department_id" value="0">
-							<option disabled selected value></option>
-							@foreach (DB::table('departments')->get() as $odjel)
-								<option name="department_id" value="{{ $odjel->id }} ">{{ $odjel->name }}</option>
-							@endforeach
+							@if($vozilo->department_id)
 							<option selected="selected" value="{{  $vozilo->department_id }}">
 								{{ $vozilo->department['name'] }}
 							</option>
+							@endif
+							<option value="0"></option>
+							@foreach (DB::table('departments')->get() as $odjel)
+								<option name="department_id" value="{{ $odjel->id }} ">{{ $odjel->name }}</option>
+							@endforeach
+							
 						</select>
                     </div>
 					<div class="form-group">
 						<text>Djelatnik</text>
 						<select class="form-control" name="user_id" value="0">
-							<option disabled selected value></option>
+							@if($vozilo->user_id)
+								<option selected="selected" value="{{ $vozilo->user_id }}">
+								{{ $vozilo->user['first_name'] . " " . $vozilo->user['last_name'] }}
+								</option>
+							@endif
+								<option value="0"></option>
 							@foreach (DB::table('users')->get() as $user)
 								<option name="user_id" value="{{ $user->id }} ">{{ $user->first_name . " " . $user->last_name }}</option>
 							@endforeach
 							
-							<option selected="selected" value="{{ $vozilo->user_id }}">
-								{{ $vozilo->user['first_name'] . " " . $vozilo->user['last_name'] }}
-							</option>
+							
 							
 							
 						</select>

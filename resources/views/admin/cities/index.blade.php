@@ -3,7 +3,7 @@
 @section('title', 'Gradovi')
 
 @section('content')
-    <div class="page-header">
+    <div class="page-header" style="margin-top:80px">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('admin.cities.create') }}"id="nav">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -30,7 +30,7 @@
                         <tr>
 							<td>{{ $grad->grad }}</td>
 							<td>{{ $grad->id}}	</td>
-                            <td>
+                            <td id="td1">
                                 <a href="{{ route('admin.cities.edit', $grad->id) }}" class="btn btn-default ">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         Edit

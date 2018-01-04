@@ -3,7 +3,7 @@
 @section('title', 'Naručitelji')
 
 @section('content')
-    <div class="page-header">
+    <div class="page-header" style="margin-top:80px">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('admin.customers.create') }}"id="nav">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -32,7 +32,7 @@
 							<td>{{ $customer->naziv }}</td>
 							<td>{{ $customer->adresa}}	</td>
 							<td value="{{ $customer->grad_id}}">{{ $customer->city['grad']}}	</td>
-                            <td>
+                            <td id="td1">
                                 <a href="{{ route('admin.customers.edit', $customer->id) }}" class="btn btn-default ">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         Edit

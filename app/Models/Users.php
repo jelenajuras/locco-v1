@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use Cartalyst\Sentinel\Users\EloquentUser;
+
 class Users extends EloquentUser
 {
 	protected $fillable = [
@@ -10,23 +11,8 @@ class Users extends EloquentUser
         'last_name',
         'first_name',
         'permissions',
-		'department_id',
-		'user_id'
+		//'department_id',
     ];
-	
-	/*
-	* The Eloquent post model names
-	* 
-	* @var string
-	*/
-	protected static $postsModel = 'App\Models\Post'; /* putanja do modela posts
-	
-	/*
-	* The Eloquent comments model name
-	* 
-	* @var string
-	*/
-	protected static $commentsModel = 'App\Models\Comment'; /* putanja do modela comments
 	
 	/*
 	* The Eloquent department model name
@@ -61,28 +47,6 @@ class Users extends EloquentUser
 	}	
 	
 	/*
-	* Returns the posts relationship
-	* 
-	* @return \Illuminate\Database\Eloquent\Relations\HasMany
-	*/
-	
-	public function posts()
-	{
-		return $this->hasMany(static::$postsModel,'user_id');
-	}
-	
-	/*
-	* Returns the comments relationship
-	* 
-	* @return \Illuminate\Database\Eloquent\Relations\HasMany
-	*/
-	
-	public function comments()
-	{
-		return $this->hasMany(static::$commentsModel,'user_id');
-	}	
-	
-	/*
 	* Returns the Deparment relationship
 	* 
 	* @return \Illuminate\Database\Eloquent\Relations\belongsTo
@@ -103,4 +67,28 @@ class Users extends EloquentUser
 	{
 		return $this->hasOne(static::$carModel,'user_id');
 	}
+	
+	/*
+	* Save User
+	* 
+	* @param array $user
+	* @return void
+	*/
+	
+	public function saveUser ($user=array())
+	{
+		return $this->fill($user)->save();
+	}
+	
+	/*
+	* Update User
+	* 
+	* @param array $user
+	* @return void
+	*/
+	
+	public function updateUser($user=array())
+	{
+		return $this->update($user);
+	}	
 }

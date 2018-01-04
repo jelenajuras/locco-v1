@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Controllers\Admin;
+
 use Mail;
 use Sentinel;
 use App\Http\Requests;
+use App\Http\Requests\UserRequest;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Users\IlluminateUserRepository;
@@ -34,8 +36,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->userRepository->createModel()->with('roles')->paginate(15);
+        $users = Users::orderBy('last_name','ASC')->paginate(20);
         return view('admin.users.index', ['users' => $users]);
+
     }
     /**
      * Show the form for creating a new user.
@@ -53,50 +56,36 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        // Validate the form data
-        $result = $this->validate($request, [
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
-        // Assemble registration credentials and attributes
-        $credentials = [
-            'email' => trim($request->get('email')),
+        $input = $request;
+
+		$data = array(
+			'email' => trim($request->get('email')),
             'password' => $request->get('password'),
             'first_name' => $request->get('first_name', null),
             'last_name' => $request->get('last_name', null),
-			'department_id' => $request->get('department_id', null),
-			'car_id' => $request->get('car_id', null)
-        ];
-        $activate = (bool)$request->get('activate', false);
-        // Attempt the registration
-        $result = $this->authManager->register($credentials, $activate);
-        if ($result->isFailure()) {
-            return $result->dispatch;
-        }
-     /*   // Do we need to send an activation email?
-        if (!$activate) {
-            $code = $result->activation->getCode();
-            $email = $result->user->email;
-            Mail::queue(
-                'email.welcome',
-                ['code' => $code, 'email' => $email],
-                function ($message) use ($email) {
-                    $message->to($email)
-                        ->subject('Your account has been created');
-                }
-            );
-        }*/
-        // Assign User Roles
+			//'department_id' => $request->get('department_id', null)
+		);
+		
+		$result = $this->authManager->register($data, $activation=true);
+		// Assign User Roles
         foreach ($request->get('roles', []) as $slug => $id) {
             $role = Sentinel::findRoleBySlug($slug);
             if ($role) {
                 $role->users()->attach($result->user);
             }
         }
-       /* $result->setMessage("User {$request->get('email')} has been created.");*/
-        return $result->dispatch(route('users.index'));
+			
+		$message = session()->flash('success', 'Uspješno je dodan novi djelatnik');
+		
+		//return redirect()->back()->withFlashMessage($messange);
+		return redirect()->route('users.index')->withFlashMessage($message);
+		
+		
+		
+		
+		
     }
     /**
      * Display the specified user.
@@ -153,8 +142,7 @@ class UserController extends Controller
             'email' => trim($request->get('email')),
             'first_name' => $request->get('first_name', null),
             'last_name' => $request->get('last_name', null),
-			'department_id' => $request->get('department_id', null),
-			'car_id' => $request->get('car_id', null)
+			//'department_id' => $request->get('department_id', null)
         ];
         // Do we need to update the password as well?
         if ($request->has('password')) {

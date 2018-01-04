@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 class RegistrationController extends Controller
 {
     /** @var Centaur\AuthManager */
@@ -47,9 +48,11 @@ class RegistrationController extends Controller
         $credentials = [
             'email' => trim($request->get('email')),
             'password' => $request->get('password'),
+			'first_name'=>$request->get('first_name'),
+			'last_name'=>$request->get('last_name'),
         ];
         // Attempt the registration
-        $result = $this->authManager->register($credentials);
+        $result = $this->authManager->register($credentials, $activation=true);
         if ($result->isFailure()) {
             return $result->dispatch();
         }
@@ -57,7 +60,7 @@ class RegistrationController extends Controller
         $role = Sentinel::findRoleBySlug('basic');
         $role->users()->attach($result->user->id);
         // Send the activation email
-        $code = $result->activation->getCode();
+       /* $code = $result->activation->getCode();
         $email = $result->user->email;
         Mail::queue(
             'email.welcome',
@@ -68,9 +71,9 @@ class RegistrationController extends Controller
             }
         );
         // Ask the user to check their email for the activation link
-        $result->setMessage('Registration complete.  Please check your email for activation instructions.');
+        $result->setMessage('Registracija završena. Prijavi se.');
         // There is no need to send the payload data to the end user
-        $result->clearPayload();
+        $result->clearPayload();*/
         // Return the appropriate response
         return $result->dispatch(route('auth.login.form'));
     }
@@ -82,20 +85,21 @@ class RegistrationController extends Controller
     public function getActivate(Request $request, $code)
     {
         // Attempt the registration
-        $result = $this->authManager->activate($code);
-        if ($result->isFailure()) {
+		
+    //    $result = $this->authManager->activate($code);
+    //    if ($result->isFailure()) {
             // Normally an exception would trigger a redirect()->back() However,
             // because they get here via direct link, back() will take them
             // to "/";  I would prefer they be sent to the login page.
-            $result->setRedirectUrl(route('auth.login.form'));
-            return $result->dispatch();
-        }
+      //      $result->setRedirectUrl(route('auth.login.form'));
+         //   return $result->dispatch();
+        //}
         // Ask the user to check their email for the activation link
-        $result->setMessage('Registration complete.  You may now log in.');
+      //  $result->setMessage('Registration complete.  You may now log in.');
         // There is no need to send the payload data to the end user
-        $result->clearPayload();
+     //   $result->clearPayload();
         // Return the appropriate response
-        return $result->dispatch(route('auth.login.form'));
+      //  return $result->dispatch(route('auth.login.form'));
     }
     /**
      * Show the Resend Activation form

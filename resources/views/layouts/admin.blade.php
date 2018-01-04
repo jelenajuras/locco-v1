@@ -62,13 +62,16 @@
 	th {
 		text-align: center;
 	}
+	#td1 {
+		text-align: center;
+	}
 	#myTable {
 		font-size:100%;
 	}
 </style>
 	
     <body>
-        <nav class="navbar navbar-default" navbar-fixed-top" id="nav">
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="nav">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -97,11 +100,17 @@
 						<li class=""><a href="{{ route('admin.loccos.index') }}" id="nav1">Locco vožnja</a></li>
 						
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right" >
                         @if (Sentinel::check())
                           <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="nav1"><span class="user"></span> {{ Sentinel::getUser()->first_name }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="nav1"><span class="user">
+							@If(Sentinel::getUser()->first_name)
+							</span> {{ Sentinel::getUser()->first_name }} <span class="caret"></span>
+							@else
+							</span> {{ Sentinel::getUser()->email }} <span class="caret"></span>
+							@endif
+							</a>
+                            <ul class="dropdown-menu" id="nav">
                               <li><a href="{{ route('auth.logout') }}" id="nav1">Odjava</a></li>
                             </ul>
                           </li>

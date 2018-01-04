@@ -3,7 +3,7 @@
 @section('title', 'Locco')
 
 @section('content')
-    <div class="page-header">
+    <div class="page-header" style="margin-top:80px">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('admin.loccos.create') }}"id="nav">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -49,11 +49,11 @@
 							<td>{{ $locco->Komentar }} </td>
 							
                             <td>
-                                <a href="{{ route('admin.loccos.edit', $locco->id) }}" class="btn btn-default ">
+                                <a href="{{ route('admin.loccos.edit', $locco->id) }}" class="btn btn-default {{ Sentinel::getUser()->id != $locco->user_id ? 'disabled' : '' }}">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         Edit
                                 </a>
-                                <a href="{{ route('admin.loccos.destroy', $locco->id) }}" class="btn btn-danger action_confirm" data-method="delete" data-token="{{ csrf_token() }}">
+                                <a href="{{ route('admin.loccos.destroy', $locco->id) }}" class="btn btn-danger action_confirm {{ Sentinel::getUser()->id != $locco->user_id ? 'disabled' : '' }}" data-method="delete" data-token="{{ csrf_token() }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         Delete
                                 </a>

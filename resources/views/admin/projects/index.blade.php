@@ -3,7 +3,7 @@
 @section('title', 'Projekti')
 
 @section('content')
-    <div class="page-header">
+    <div class="page-header" style="margin-top:80px">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('admin.projects.create') }}" id="nav">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -35,7 +35,7 @@
                                 <td>{{ $project->narucitelj['naziv'] }}</td>
 								<td>{{ $project->investitor['naziv'] }}</td>
 								<td>{{ $project->naziv }}</td>
-                                  <td>
+                                  <td id="td1">
                                     <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-default">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         Edit

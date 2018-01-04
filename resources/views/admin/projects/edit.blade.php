@@ -3,7 +3,7 @@
 @section('title', 'Promjene podataka projekta')
 
 @section('content')
-<div class="row">
+<div class="row" style="margin-top:80px">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading" id="nav">
@@ -20,28 +20,34 @@
                     <div class="form-group">
 						<text>Naručitelj</text>
 						<select class="form-control" name="customer_id" id="sel1">	
+							@if ($project->customer_id)
+								<option selected="selected"  value="{{ $project->customer_id }}">
+									{{$project->narucitelj['naziv']}}
+								</option>
+								<option value="0"></option>
+							@else
+								<option selected="selected" value="0"></option>
+							@endif
 							@foreach (DB::table('customers')->get() as $customer)
 								<option name="customer_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach
-							@if ($project->customer_id)
-							<option selected="selected"  value="{{ $project->customer_id }}">
-								{{$project->narucitelj['naziv']}}
-							</option>
-							@endif
+							
 						</select>
                     </div>
 					<div class="form-group">
 						<text>Investitor</text>
 						<select class="form-control" name="investitor_id" value="" id="sel1">
-							<option disabled selected></option>
-							@foreach (DB::table('customers')->get() as $customer)
-								<option name="investitor_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
-							@endforeach
 							@if ($project->investitor_id)
 							<option selected="selected" value="{{ $project->investitor_id }}">
 								{{$project->investitor['naziv']}}
 							</option>
+							<option value="0"></option>
+							@else
+								<option selected="selected" value="0"></option>
 							@endif
+							@foreach (DB::table('customers')->get() as $customer)
+								<option name="investitor_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
+							@endforeach	
 						</select>
                     </div>
                     <div class="form-group {{ ($errors->has('naziv')) ? 'has-error' : '' }}">

@@ -3,7 +3,7 @@
 @section('title', 'Create New User')
 
 @section('content')
-<div class="row">
+<div class="row" style="margin-top:80px">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading" id="nav">
@@ -31,19 +31,20 @@
                                 <input type="checkbox" name="roles[{{ $role->slug }}]" value="{{ $role->id }}">
                                 {{ $role->name }}
                             </label>
+							
                         </div>
                     @endforeach
                     <hr />
-					<div class="form-group">
+					<!--<div class="form-group">
 						<text>Odjel</text>
                         <select class="form-control" name="department_id" id="sel1" >
-							<option disabled selected value></option>
+							<option value="0"></option>
 							@foreach (DB::table('departments')->get() as $odjel)
 							<option name="department_id" value=" {{ $odjel->id }} ">{{ $odjel->name }}</option>
 							@endforeach
 						</select>
                     </div>
-					<!-- <div class="form-group">
+					 <div class="form-group">
 						<text>Vozilo</text>
                         <select class="form-control" name="car_id" id="sel1" >
 							<option disabled selected value></option>
@@ -51,7 +52,7 @@
 							<option name="car_id" value=" {{ $vozilo->id }} ">{{ $vozilo->registracija }}</option>
 							@endforeach
 						</select>
-                    </div> -->
+                    </div>-->
                       
                     
                     <div class="form-group  {{ ($errors->has('password')) ? 'has-error' : '' }}">
