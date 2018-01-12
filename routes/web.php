@@ -101,6 +101,10 @@ Route::group(['prefix' => 'admin'], function () {
   'update'		=> 'admin.loccos.update', 
   'destroy'		=> 'admin.loccos.destroy'
   ]]);
+
+	Route::get('registracija/{registracija?}', function ($registracija = null) {
+	return $registracija;
+	})->name('qrRegistracija');
 });
 
 // Post page

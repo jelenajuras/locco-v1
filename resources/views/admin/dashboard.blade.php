@@ -29,6 +29,13 @@
                 <fieldset>
                     <div class="form-group {{ ($errors->has('vozilo_id')) ? 'has-error' : '' }}">
                         <text>Vozilo</text>
+
+						<form action="/qrRegistracija">
+							{{ csrf_field() }}
+								{{ $url = route('qrRegistracija', ['registracija' => 'ZG 9458 GB']) }}
+								
+						</form>
+
 						<select class="form-control" name="vozilo_id" id="sel1" value="{{ old('vozilo_id') }}" >  
 						@if(DB::table('cars')->where('user_id',Sentinel::getUser()->id)->value('registracija'))
 							<option selected="selected" value="{{ DB::table('cars')->where('user_id',Sentinel::getUser()->id)->value('id') }}">

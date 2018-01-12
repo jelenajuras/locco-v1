@@ -148,4 +148,20 @@ class LoccoController extends Controller
 		
 		return redirect()->route('admin.loccos.index')->withFlashMessage($message);
     }
+	
+	public function handle($request, Closure $next)
+{
+    if ($request->route()->named('qrRegistracija')) {
+     //
+    }
+
+    return $next($request);
+	
+	
+	public function VoziloRegistracija()
+    {	
+		$url = route('qrRegistracija', ['registracija' => 'ZG 9458 GB']);
+		
+		return $registracija;
+	}
 }
