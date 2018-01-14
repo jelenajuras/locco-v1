@@ -24,8 +24,9 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      return view('admin.dashboard');
+      $reg = $request->get('reg');
+       return view('admin.dashboard')->with('reg',$reg);
     }
 }

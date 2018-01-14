@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title', 'AlgebraBox | The greatest cloud storage')
+@section('title', 'Duplico - locco')
 
 @section('content')
 <div class="row" style="margin-top:80px">

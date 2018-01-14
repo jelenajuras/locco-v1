@@ -22,19 +22,24 @@
                 <fieldset>
                     <div class="form-group {{ ($errors->has('vozilo_id')) ? 'has-error' : '' }}">
                         <text>Vozilo</text>
-						<select class="form-control" name="vozilo_id" id="sel1" value="{{ old('vozilo_id') }}" >  
-						@if(DB::table('cars')->where('user_id',Sentinel::getUser()->id)->value('registracija'))
+						
+						<select class="form-control" name="vozilo_id" id="sel1" value="{{ old('vozilo_id') }}" > 
+						
+						<!--@if(DB::table('cars')->where('user_id',Sentinel::getUser()->id)->value('registracija'))
 							<option selected="selected" value="{{ DB::table('cars')->where('user_id',Sentinel::getUser()->id)->value('id') }}">
 								{{ DB::table('cars')->where('user_id',Sentinel::getUser()->id)->value('registracija') }}
 							</option>
 						@else
 							<option value="0">Izaberi vozilo</option>
-						@endif
+						@endif-->
+						<option name="vozilo_id" value="{{ DB::table('cars')->where('registracija',$reg)->value('id') }}">{{ $reg }}</option>
+						
 							@foreach (DB::table('cars')->get() as $car)
 								<option name="vozilo_id" value=" {{ $car->id }} ">{{ $car->registracija }}</option>
 							@endforeach 
 						</select>
                     </div>
+					
 					<div class="form-group">
 						<text>Datum vožnje</text>
 						<input class="date form-control" placeholder="Datum vožnje" type="text" name="datum" value = "{{ Carbon\Carbon::now()->format('Y-m-d') }}">

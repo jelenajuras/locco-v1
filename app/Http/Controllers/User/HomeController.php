@@ -23,12 +23,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-		$locco = Locco::all();
-
-		
-        return view('user.home',['locco'=>$locco]);
+		$reg = $request->get('reg');
+        return view('user.home')->with('reg',$reg);
     }
 	
 	

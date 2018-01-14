@@ -37,9 +37,10 @@ class LoccoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-       return view('admin.loccos.create');
+	   $reg = $request->get('reg');
+       return view('admin.loccos.create')->with('reg',$reg);
     }
 
     /**
@@ -149,19 +150,5 @@ class LoccoController extends Controller
 		return redirect()->route('admin.loccos.index')->withFlashMessage($message);
     }
 	
-	public function handle($request, Closure $next)
-{
-    if ($request->route()->named('qrRegistracija')) {
-     //
-    }
-
-    return $next($request);
 	
-	
-	public function VoziloRegistracija()
-    {	
-		$url = route('qrRegistracija', ['registracija' => 'ZG 9458 GB']);
-		
-		return $registracija;
-	}
 }
