@@ -26,7 +26,7 @@
                         </label>
                     </div>
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login" id="nav">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Prijava" id="nav">
                     <p style="margin-top:5px; margin-bottom:0"><a href="{{ route('auth.password.request.form') }}" style="color:black" type="submit">Zaboravio/la si password?</a></p>
                 </fieldset>
                 </form>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Locco;
+use App\Models\Car;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoccoRequest;
 use Sentinel;
@@ -60,19 +61,26 @@ class LoccoController extends Controller
 			'relacija'  => ucfirst(strtolower($input['relacija'])),
 			'projekt_id'  => $input['projekt_id'],
 			'razlog_puta'  => $input['razlog'],
-			'početni_kilometri'  => $input['početni_kilometri'],
+			'početni_kilometri'  => trim($input['početni_kilometri']),
 			'završni_kilometri'  => $input['završni_kilometri'],
-			'prijeđeni_kilometri'  => $input['završni_kilometri']-$input['početni_kilometri'],
+			'prijeđeni_kilometri'  => $input['završni_kilometri']-trim($input['početni_kilometri']),
 			'Komentar'  => $input['Komentar']
 		);
-		
 		$locco = new Locco();
 		$locco->saveLocco($data);
+		
+		$km = array(
+			'trenutni_kilometri'  => $input['završni_kilometri']
+		);
+		
+		$vozilo = Car::where('id', $input['vozilo_id']);
+		$vozilo->update($km);
 		
 		$message = session()->flash('success', 'Uspješno je dodana nova locco vožnja');
 		
 		//return redirect()->back()->withFlashMessage($messange);
 		return redirect()->route('admin.loccos.index')->withFlashMessage($message);
+
     }
 
     /**
@@ -148,7 +156,5 @@ class LoccoController extends Controller
 		$message = session()->flash('success', 'Locco vožnja je uspješno obrisana');
 		
 		return redirect()->route('admin.loccos.index')->withFlashMessage($message);
-    }
-	
-	
+    }	
 }

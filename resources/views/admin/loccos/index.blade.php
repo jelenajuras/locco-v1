@@ -12,6 +12,22 @@
         </div>
         <h1>Locco vožnje</h1>
 		<input class="form-control" id="myInput" type="text" placeholder="Traži..">
+		
+		<a href="{{URL::to('deleteAll')}}" class="btn btn-danger">Delete all</a>
+		<a href="{{URL::to('getImport')}}" class="btn btn-success">Import</a>
+		<div class="btn-group">
+			<button type="button" class="btn btn-info">Export</button>
+			<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+				<span class="caret"></span>
+				<span class="sr-only">Toggle Dropdown</span>
+			</button>
+			<ul class="dropdown-menu" role="menu" id="export-menu">
+				<li id="export-to-excel"><a href="{{URL::to('getExport')}}">Export to excel</a></li>
+				<li class="divider"></li>
+				<li><a href="#">Other</li>
+				
+			</ul>
+		</div>
     </div>
 	
     <div class="row">
@@ -49,14 +65,25 @@
 							<td>{{ $locco->Komentar }} </td>
 							
                             <td>
-                                <a href="{{ route('admin.loccos.edit', $locco->id) }}" class="btn btn-default {{ Sentinel::getUser()->id != $locco->user_id ? 'disabled' : '' }}">
+                                @if (Sentinel::check() && Sentinel::inRole('administrator'))
+									<a href="{{ route('admin.loccos.edit', $locco->id) }}" class="btn btn-default">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         Edit
-                                </a>
-                                <a href="{{ route('admin.loccos.destroy', $locco->id) }}" class="btn btn-danger action_confirm {{ Sentinel::getUser()->id != $locco->user_id ? 'disabled' : '' }}" data-method="delete" data-token="{{ csrf_token() }}">
+									</a>
+									<a href="{{ route('admin.loccos.destroy', $locco->id) }}" class="btn btn-danger action_confirm" data-method="delete" data-token="{{ csrf_token() }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         Delete
-                                </a>
+									</a>
+								@else
+									<a href="{{ route('admin.loccos.edit', $locco->id) }}" class="btn btn-default {{ Sentinel::getUser()->id != $locco->user_id ? 'disabled' : '' }}">
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+											Edit
+									</a>
+									<a href="{{ route('admin.loccos.destroy', $locco->id) }}" class="btn btn-danger action_confirm {{ Sentinel::getUser()->id != $locco->user_id ? 'disabled' : '' }}" data-method="delete" data-token="{{ csrf_token() }}">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+											Delete
+									</a>
+								@endif
                             </td>
                         </tr>
                     @endforeach

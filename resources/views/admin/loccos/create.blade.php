@@ -34,7 +34,7 @@
 						@endif-->
 						<option name="vozilo_id" value="{{ DB::table('cars')->where('registracija',$reg)->value('id') }}">{{ $reg }}</option>
 						
-							@foreach (DB::table('cars')->get() as $car)
+							@foreach (DB::table('cars')->orderBy('registracija','ASC')->get() as $car)
 								<option name="vozilo_id" value=" {{ $car->id }} ">{{ $car->registracija }}</option>
 							@endforeach 
 						</select>

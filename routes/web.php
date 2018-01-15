@@ -101,12 +101,11 @@ Route::group(['prefix' => 'admin'], function () {
   'update'		=> 'admin.loccos.update', 
   'destroy'		=> 'admin.loccos.destroy'
   ]]);
-
-	Route::get('registracija/{registracija?}', function ($registracija = null) {
-	return $registracija;
-	})->name('qrRegistracija');
 });
 
-// Post page
-Route::post('/comment/store', ['as' => 'comment.store', 'uses' => 'IndexController@storeComment']);
-Route::get('/{slug}', ['as' => 'post.show', 'uses' => 'IndexController@show']);
+//excel
+Route::get('/getImport','ExcelController@getImport');
+Route::post('/postImport','ExcelController@postImport');
+Route::get('/deleteAll','ExcelController@deleteAll');
+Route::get('/getExport','ExcelController@getExport');
+

@@ -20,23 +20,27 @@
             <div class="panel-body">
                 <form accept-charset="UTF-8" role="form" method="post" action="{{ route('admin.cars.store') }}">
                 <fieldset>
-                    <div class="form-group {{ ($errors->has('proizvođač')) ? 'has-error' : '' }}">
+                    <text>Proizvođač</text>
+					<div class="form-group {{ ($errors->has('proizvođač')) ? 'has-error' : '' }}">
                         <input class="form-control" placeholder="Proizvođač" name="proizvođač" type="text" value="{{ old('proizvođač') }}" />
                         {!! ($errors->has('proizvođač') ? $errors->first('proizvođač', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
+					<text>Model</text>
 					<div class="form-group">
                         <input class="form-control" placeholder="Model" name="model" type="text" value="{{ old('model') }}" />
 						{!! ($errors->has('model') ? $errors->first('model', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
+					<text>Registracija</text>
 					<div class="form-group">
                         <input class="form-control" placeholder="Registracija" name="registracija" type="text" value="{{ old('registracija') }}" />
 						{!! ($errors->has('registracija') ? $errors->first('registracija', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
+					<text>Broj šasije</text>
 					<div class="form-group">
                         <input class="form-control" placeholder="Broj šasije" name="šasija" type="text" value="{{ old('šasija') }}" />
 						{!! ($errors->has('šasija') ? $errors->first('šasija', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
-					
+					<text>Prva registracija</text>
 					<div class="form-group">
 						<input class="date form-control" placeholder="Prva registracija" type="text" name="prva_registracija" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 						{!! ($errors->has('prva_registracija') ? $errors->first('prva_registracija', '<p class="text-danger">:message</p>') : '') !!}
@@ -46,6 +50,7 @@
 						   format: 'yyyy-mm-dd'
 						 });  
 					</script> 
+					<text>Zadnja registracija</text>
 					<div class="form-group">
 						<input class="date form-control" placeholder="Zadnja registracija" type="text" name="zadnja_registracija" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 						{!! ($errors->has('zadnja_registracija') ? $errors->first('zadnja_registracija', '<p class="text-danger">:message</p>') : '') !!}
@@ -55,6 +60,7 @@
 						   format: 'yyyy-mm-dd'
 						 });  
 					</script> 
+					<text>Zadnji servis</text>
 					<div class="form-group">
 						<input class="date form-control" placeholder="Zadnji servis" type="text" name="zadnji_servis" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 						{!! ($errors->has('zadnji_servis') ? $errors->first('zadnji_servis', '<p class="text-danger">:message</p>') : '') !!}
@@ -64,6 +70,7 @@
 						   format: 'yyyy-mm-dd'
 						 });  
 					</script> 
+					<text>Trenutni kilometri</text>
 					<div class="form-group">
                         <input class="form-control" placeholder="Trenutni kilometri" name="trenutni_kilometri" type="text" value="{{ old('trenutni_kilometri') }}" />
 						{!! ($errors->has('trenutni_kilometri') ? $errors->first('trenutni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
@@ -78,6 +85,7 @@
 							@endforeach
 						</select>
                     </div>
+					
 					<div class="form-group">
 						<text>Djelatnik</text>
 						<select class="form-control" name="user_id">

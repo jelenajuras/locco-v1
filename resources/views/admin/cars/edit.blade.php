@@ -93,7 +93,7 @@
 								</option>
 							@endif
 								<option value="0"></option>
-							@foreach (DB::table('users')->get() as $user)
+							@foreach (DB::table('users')->orderBy('last_name','ASC')->get() as $user)
 								<option name="user_id" value="{{ $user->id }} ">{{ $user->first_name . " " . $user->last_name }}</option>
 							@endforeach
 							

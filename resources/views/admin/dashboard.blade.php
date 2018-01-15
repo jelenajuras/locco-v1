@@ -86,7 +86,7 @@
                     </div>
 					<div class="form-group">
 						<text>Početni kilometri</text>
-                        <input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" value="{{ old('početni_kilometri') }}" />
+                        <input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" value="{{ DB::table('cars')->where('registracija',$reg)->value('trenutni_kilometri') }} "/>
 						{!! ($errors->has('početni_kilometri') ? $errors->first('početni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
