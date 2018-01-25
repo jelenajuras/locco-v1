@@ -55,7 +55,7 @@ class LoccoController extends Controller
         $input = $request;
 
 		$data = array(
-			'datum'  => $input['datum'],
+			'datum'  => date("Y-m-d", strtotime($input['datum'])),
 			'vozilo_id'  => $input['vozilo_id'],
 			'user_id'  => Sentinel::getUser()->id,
 			'relacija'  => ucfirst(strtolower($input['relacija'])),
@@ -116,13 +116,13 @@ class LoccoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LoccoRequest $request, $id)
     {
         $locco = Locco::find($id);
 		$input = $request;
 		
 		$data = array(
-			'datum'  => $input['datum'],
+			'datum'  => date("Y-m-d", strtotime($input['datum'])),
 			'vozilo_id'  => $input['vozilo_id'],
 			'user_id'  => Sentinel::getUser()->id,
 			'relacija'  => ucfirst(strtolower($input['relacija'])),

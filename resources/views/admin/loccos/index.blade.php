@@ -12,8 +12,9 @@
         </div>
         <h1>Locco vožnje</h1>
 		<input class="form-control" id="myInput" type="text" placeholder="Traži..">
-		
-		<a href="{{URL::to('deleteAll')}}" class="btn btn-danger">Delete all</a>
+		</br>
+		<a href="{{URL::to('getExport')}}" class="btn btn-success">Export</a>
+		<!--<a href="{{URL::to('deleteAll')}}" class="btn btn-danger">Delete all</a>
 		<a href="{{URL::to('getImport')}}" class="btn btn-success">Import</a>
 		<div class="btn-group">
 			<button type="button" class="btn btn-info">Export</button>
@@ -27,7 +28,7 @@
 				<li><a href="#">Other</li>
 				
 			</ul>
-		</div>
+		</div>-->
     </div>
 	
     <div class="row">
@@ -42,7 +43,7 @@
 							<th>Vozač</th>
 							<th>Relacija</th>
 							<th>Projekt</th>
-							<th>Razlog puta</th>
+							<!--<th>Razlog puta</th>-->
 							<th>Početni kilometri</th>
 							<th>Završni kilometri</th>
 							<th>Prijeđeni kilometri</th>
@@ -58,7 +59,7 @@
 							<td>{{ $locco->user['first_name'] . " " . $locco->user['last_name'] }}</td>
 							<td>{{ $locco->relacija}} </td>
 							<td>{{ $locco->project['id']}} </td>
-							<td>{{ $locco->razlog_puta }} </td>
+							<!--<td>{{ $locco->razlog_puta }} </td>-->
 							<td>{{ $locco->početni_kilometri }} </td>
 							<td>{{ $locco->završni_kilometri }} </td>
 							<td>{{ $locco->prijeđeni_kilometri }} </td>

@@ -29,7 +29,7 @@ class LoccoRequest extends FormRequest
 		   'datum' 			 => 'required',
 		   'relacija' 		 => 'required',
 		   'početni_kilometri' 	=> 'required',
-		   'završni_kilometri' 	=> 'required|numeric'
+		   'završni_kilometri' 	=> 'required|numeric|greater_than_field:početni_kilometri'
         ];
     }
 	
@@ -43,7 +43,8 @@ class LoccoRequest extends FormRequest
 			'početni_kilometri.required'	=> 'Unos početnih kilometara je obavezan!',
 			//'početni_kilometri.numeric'	=> 'Dozvoljen je unos samo brojeva!',
 			'završni_kilometri.required'	=> 'Unos završnih kilometara je obavezan!',
-			'završni_kilometri.numeric'	=> 'Dozvoljen je unos samo brojeva!'			
+			'završni_kilometri.numeric'	=> 'Dozvoljen je unos samo brojeva!',
+			'završni_kilometri.greater_than_field' => 'Završni kilometri ne mogu biti manji od početnih!'				
 		];
 	}
 }

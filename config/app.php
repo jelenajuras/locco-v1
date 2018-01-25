@@ -164,7 +164,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 		//export to excel
 		Maatwebsite\Excel\ExcelServiceProvider::class,
-
+		//OCR
+		Yk\LaravelOcr\OcrProvider::class,
         /*
          * Package Service Providers...
          */
@@ -230,7 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
 		'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-
+		'Ocr' => Yk\LaravelOcr\Facades\Ocr::class,
     ],
 
 ];

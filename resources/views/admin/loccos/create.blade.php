@@ -8,6 +8,10 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 @section('content')
@@ -42,12 +46,12 @@
 					
 					<div class="form-group">
 						<text>Datum vožnje</text>
-						<input class="date form-control" placeholder="Datum vožnje" type="text" name="datum" value = "{{ Carbon\Carbon::now()->format('Y-m-d') }}">
+						<input class="date form-control" placeholder="Datum vožnje" type="text" name="datum" value = "{{ Carbon\Carbon::now()->format('d-m-Y') }}">
 						{!! ($errors->has('datum') ? $errors->first('datum', '<p class="text-danger">:message</p>') : '') !!}
 					</div>
 					<script type="text/javascript">
 						$('.date').datepicker({  
-						   format: 'yyyy-mm-dd'
+						   format: 'dd-mm-yyyy'
 						 });  
 					</script> 
 					<div class="form-group {{ ($errors->has('user_id'))  ? 'has-error' : '' }}">
@@ -67,18 +71,31 @@
 						{!! ($errors->has('relacija') ? $errors->first('relacija', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
-					<text>Razlog puta</text>
+					<!--<text>Razlog puta</text>
                         <input class="form-control" placeholder="Razlog puta" name="razlog" type="text" value="{{ old('razlog') }}" />
-                    </div>
+                    </div>-->
+					
 					<div class="form-group">
+					<text>Projekt</text>
+					  <input class="form-control" list="projekti" name="projekt_id" value="0"/>
+					  <datalist id="projekti">
+						@foreach (DB::table('projects')->orderBy('id','ASC')->get() as $project)
+							<option name="projekt_id" value="{{ $project->id }} ">{{ $project->id . " - " . $project->naziv }}</option>
+						@endforeach	
+					  </datalist>
+
+					 </div>
+					
+					<!--<div class="form-group">
                         <text>Projekt</text>
-						<select class="form-control" name="projekt_id" id="sel1" value="{{ old('projekt_id') }}">
+						<select class="form-control" name="projekt_id" id="myTable" value="{{ old('projekt_id') }}">
 							<option value="0"></option>
 							@foreach (DB::table('projects')->orderBy('id','ASC')->get() as $project)
 								<option name="projekt_id" value=" {{ $project->id }} ">{{ $project->id . " - " . $project->naziv }}</option>
 							@endforeach	
 						</select>
-                    </div>
+                    </div>-->
+					
 					<div class="form-group">
 						<text>Početni kilometri</text>
                         <input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" value="{{ old('početni_kilometri') }}" />
@@ -100,5 +117,17 @@
             </div>
         </div>
     </div>
+	<script>
+	$(document).ready(function(){
+	  $("#myInput").on("keyup", function() {
+		var value = $(this).val().toLowerCase();
+		$("#myList li").filter(function() {
+		  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	  });
+	});
+	</script>
 </div>
+
+
 @stop
