@@ -17,17 +17,17 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="table-responsive">
 				<table class="table table-hover">
-						<thead>
-							<tr>
-								<th>Avatar</th>
-								<th>Ime i prezime</th>
-								<th>email</th>
-								<!--<th>Odjel</th>-->
-								<th>Vozilo</th> 
-								<th>Uloge</th>
-								<th>Opcije</th>
-							</tr>
-						</thead>
+					<thead>
+						<tr>
+							<th>Avatar</th>
+							<th>Ime i prezime</th>
+							<th>email</th>
+							<!--<th>Odjel</th>-->
+							<th>Vozilo</th> 
+							<th>Uloge</th>
+							<th>Opcije</th>
+						</tr>
+					</thead>
 					<tbody id="myTable">
 						@foreach ($users as $user)
 							<tr>
@@ -43,14 +43,16 @@
 								@endif</td>
 								
 							
-								<td><a href="{{ route('users.edit', $user->id) }}" class="btn btn-default">
-									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-									Edit
-								</a>
-								<a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger action_confirm" data-method="delete" data-token="{{ csrf_token() }}">
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-									Delete
-								</a></td>
+								<td>
+									<a href="{{ route('users.edit', $user->id) }}" class="btn btn-default">
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+										Edit
+									</a>
+									<!--<a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger action_confirm" data-method="delete" data-token="{{ csrf_token() }}">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										Delete
+									</a>-->
+								</td>
 								
 							</tr>
 						@endforeach

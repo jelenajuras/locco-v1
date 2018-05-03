@@ -41,7 +41,7 @@
                     </div>
 					<div class="form-group">
 						<text>Datum vožnje</text>
-						<input class="date form-control" placeholder="Datum vožnje" type="text" name="datum" value = "{{ Carbon\Carbon::now()->format('d-m-Y') }}">
+						<input class="date form-control" placeholder="Datum vožnje" type="text" name="datum" value = "{{ date("d-m-Y",strtotime($locco->datum)) }}">
 						{!! ($errors->has('datum') ? $errors->first('datum', '<p class="text-danger">:message</p>') : '') !!}
 					</div>
 					<script type="text/javascript">
@@ -52,11 +52,11 @@
 					<div class="form-group {{ ($errors->has('user_id'))  ? 'has-error' : '' }}">
                         <text>Vozač</text>
 						<select class="form-control" name="user_id" id="sel1">
-							@foreach (DB::table('users')->get() as $user)
+							@foreach (DB::table('users')->orderBy('last_name','ASC')->get() as $user)
 								<option name="user_id" value=" {{ $user->id }} ">{{ $user->first_name . ' ' . $user->last_name }}</option>
 							@endforeach	
 							<option selected="selected"  value="{{ $locco->user_id }}">
-								{{ $locco->user['first_name'] . ' '. $locco->user['first_name'] }}
+								{{ $locco->user['first_name'] . ' '. $locco->user['last_name'] }}
 							</option>
 						</select>
                     </div>
@@ -76,6 +76,9 @@
 						@foreach (DB::table('projects')->orderBy('id','ASC')->get() as $project)
 							<option name="projekt_id" value="{{ $project->id }} ">{{ $project->id . " - " . $project->naziv }}</option>
 						@endforeach	
+						<option selected="selected"  value="{{ $locco->projekt_id }}">
+								{{ $locco->projekt_id . ' '. $locco->projekt['naziv'] }}
+							</option>
 					  </datalist>
 
 					 </div>

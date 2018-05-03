@@ -33,10 +33,10 @@
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         Edit
                                 </a>
-                                <a href="{{ route('admin.departments.destroy', $odjel->id) }}" class="btn btn-danger action_confirm" data-method="delete" data-token="{{ csrf_token() }}">
+                               <!-- <a href="{{ route('admin.departments.destroy', $odjel->id) }}" class="btn btn-danger action_confirm" data-method="delete" data-token="{{ csrf_token() }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         Delete
-                                </a>
+                                </a>-->
                             </td>
                         </tr>
                     @endforeach

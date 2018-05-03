@@ -63,7 +63,7 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('index') }}" id="nav1">Početna strana</a></li>				  
+					<li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}" id="nav1">Početna strana</a></li>				  
 				</ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Sentinel::check())

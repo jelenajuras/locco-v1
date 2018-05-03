@@ -29,7 +29,7 @@ class LoccoController extends Controller
      */
     public function index()
     {
-        $locco_vožnje = Locco::orderBy('datum','DESC')->paginate(20);
+        $locco_vožnje = Locco::orderBy('datum','DESC')->orderBy('završni_kilometri','DESC')->get();
 		return view('admin.loccos.index',['locco_vožnje'=>$locco_vožnje]);
     }
 
@@ -57,8 +57,8 @@ class LoccoController extends Controller
 		$data = array(
 			'datum'  => date("Y-m-d", strtotime($input['datum'])),
 			'vozilo_id'  => $input['vozilo_id'],
-			'user_id'  => Sentinel::getUser()->id,
-			'relacija'  => ucfirst(strtolower($input['relacija'])),
+			'user_id'  => $input['user_id'],
+			'relacija'  => $input['relacija'],
 			'projekt_id'  => $input['projekt_id'],
 			'razlog_puta'  => $input['razlog'],
 			'početni_kilometri'  => trim($input['početni_kilometri']),
@@ -80,7 +80,6 @@ class LoccoController extends Controller
 		
 		//return redirect()->back()->withFlashMessage($messange);
 		return redirect()->route('admin.loccos.index')->withFlashMessage($message);
-
     }
 
     /**
@@ -124,8 +123,8 @@ class LoccoController extends Controller
 		$data = array(
 			'datum'  => date("Y-m-d", strtotime($input['datum'])),
 			'vozilo_id'  => $input['vozilo_id'],
-			'user_id'  => Sentinel::getUser()->id,
-			'relacija'  => ucfirst(strtolower($input['relacija'])),
+			'user_id'  => $input['user_id'],
+			'relacija'  =>  $input['relacija'],
 			'projekt_id'  => $input['projekt_id'],
 			'razlog_puta'  => $input['razlog'],
 			'početni_kilometri'  => trim($input['početni_kilometri']," "),

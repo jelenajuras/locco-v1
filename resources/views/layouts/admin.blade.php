@@ -5,33 +5,29 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
         <title>@yield('title')</title>
 
-        <!-- Bootstrap - Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- Bootstrap - Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+		
 		@stack('stylesheet')
 
-</head>
-<head>
-
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-</head>
+	</head>
 
 <style>
-	body {
-		background-color: rgb(230, 230, 230);
-	}
+
 	#nav {
 		background-color: rgb(77, 77, 77);
 		color: rgb(255, 133, 51);
@@ -57,7 +53,6 @@
 	}
 	thead {
 		font-size:75%;
-		
 	}
 	th {
 		text-align: center;
@@ -88,19 +83,30 @@
                     <ul class="nav navbar-nav">
                         <!-- <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}" id="nav1">Dashboard</a></li> -->
                         @if (Sentinel::check() && Sentinel::inRole('administrator'))
-                            <li class="{{ Request::is('admin/users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}" id="nav1">Djelatnici</a></li>
-                            <li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('roles.index') }}" id="nav1">Dozvole</a></li>
-							<li class=""><a href="{{ route('admin.cities.index') }}" id="nav1">Gradovi</a></li>
-							<li class=""><a href="{{ route('admin.customers.index') }}" id="nav1">Naručitelji</a></li>
-							<li class=""><a href="{{ route('admin.projects.index') }}" id="nav1">Projekti</a></li>
-							<li class=""><a href="{{ route('admin.departments.index') }}" id="nav1">Odjeli</a></li>
-							<li class=""><a href="{{ route('admin.cars.index') }}" id="nav1">Vozila</a></li>
+                        <li>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="nav1"><span class="caret"></span>Osnovni podaci</a>
+							<ul class="dropdown-menu" id="nav">    
+								<li class="{{ Request::is('admin/users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}" id="nav1">Djelatnici</a></li>
+								<li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('roles.index') }}" id="nav1">Dozvole</a></li>
+								<li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('admin.departments.index') }}" id="nav1">Odjeli</a></li>
+								<li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('admin.cars.index') }}" id="nav1">Vozila</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="nav1"><span class="caret"></span>Projekti</a>
+							<ul class="dropdown-menu" id="nav">
+								<li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('admin.cities.index') }}" id="nav1">Gradovi</a></li>
+								<li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('admin.customers.index') }}" id="nav1">Naručitelji</a></li>
+								<li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('admin.projects.index') }}" id="nav1">Projekti</a></li>
+							</ul>
+						 </li>
+							
                         @endif
 						
 						<li class=""><a href="{{ route('admin.loccos.index') }}" id="nav1">Locco vožnja</a></li>
 						
                     </ul>
-                    <ul class="nav navbar-nav navbar-right" >
+                    <ul class="nav navbar-nav navbar-right">
                         @if (Sentinel::check())
                           <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="nav1"><span class="user">
@@ -133,9 +139,55 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
         <!-- Restfulizer.js - A tool for simulating put,patch and delete requests -->
         <script src="{{ asset('js/restfulizer.js') }}"></script>
+		
+		<!-- DataTables -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  
+		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/datatables.min.css"/>
+		 
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/datatables.min.js"></script>
+		
+		<script>
+			$(document).ready( function () {
+				$('#table_id').DataTable( {
+					language: {
+						paginate: {
+							previous: 'Prethodna',
+							next:     'Slijedeća',
+						},
+						"info": "Prikaz _START_ do _END_ od _TOTAL_ zapisa",
+						"search": "Filtriraj:",
+						"lengthMenu": "Prikaži _MENU_ zapisa"
+					},
+					 "lengthMenu": [ 25, 50, 75, 100 ],
+					 "pageLength": 50,
+					  dom: 'Bfrtip',
+						buttons: [
+							//'copy', 'excel', 'pdf', 'print',
+					/*{
+						extend: 'pdfHtml5',
+						text: 'Izradi PDF',
+						exportOptions: {
+							columns: ":not(.not-export-column)"
+							}
+						},*/
+						{
+					extend: 'excelHtml5',
+					text: 'Izradi XLS',
+					exportOptions: {
+						columns: ":not(.not-export-column)"
+					}
+					},
+					 ],
+				});
+			});
+		</script>
 		@stack('script')
 		
 		
