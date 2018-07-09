@@ -3,6 +3,7 @@
 @section('title', 'Gradovi')
 
 @section('content')
+<div class="Jmain">
     <div class="page-header" style="margin-top:80px">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('admin.cities.create') }}"id="nav">
@@ -61,4 +62,5 @@
 
         </div>
     </div>
+</div>
 @stop

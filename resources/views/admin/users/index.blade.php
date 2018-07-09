@@ -3,6 +3,7 @@
 @section('title', 'Djelatnici')
 
 @section('content')
+<div class="Jmain">
     <div class="page-header" style="margin-top:80px">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('users.create') }}" id="nav">
@@ -71,5 +72,5 @@
 			</div>
         </div>
     </div>
-    {!! $users->render() !!}
+</div>
 @stop

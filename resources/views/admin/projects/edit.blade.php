@@ -28,7 +28,7 @@
 							@else
 								<option selected="selected" value="0"></option>
 							@endif
-							@foreach (DB::table('customers')->get() as $customer)
+							@foreach (DB::table('customers')->orderBy('naziv','ASC')->get() as $customer)
 								<option name="customer_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach
 							
@@ -45,7 +45,7 @@
 							@else
 								<option selected="selected" value="0"></option>
 							@endif
-							@foreach (DB::table('customers')->get() as $customer)
+							@foreach (DB::table('customers')->orderBy('naziv','ASC')->get() as $customer)
 								<option name="investitor_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach	
 						</select>

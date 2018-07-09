@@ -92,16 +92,17 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
+
 		return view('admin.projects.edit', ['project' => $project]);
 	
     }
 	 public function update(ProjectRequest $request, $id)
     {
-        $project = Project::find($id);
+        $project = Project::find(id);
 		$input = $request;
 		
 		$data = array(
-			
+			'id'             => $input['id'],
 			'customer_id'    => $input['customer_id'],
 			'investitor_id'  => $input['investitor_id'],
 			'naziv'			 => $input['naziv']

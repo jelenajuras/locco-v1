@@ -33,7 +33,7 @@
 						<text>Investitor</text>
 						<select class="form-control" name="investitor_id"  id="sel1">
 							<option disabled selected value> </option>
-							@foreach (DB::table('customers')->get() as $customer)
+							@foreach (DB::table('customers')->orderBy('naziv','ASC')->get() as $customer)
 								<option name="investitor_id" value=" {{$customer->id}} ">{{ $customer->naziv }}</option>
 							@endforeach
 						</select>

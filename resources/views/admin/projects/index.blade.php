@@ -3,6 +3,7 @@
 @section('title', 'Projekti')
 
 @section('content')
+<div class="Jmain">
     <div class="page-header" style="margin-top:80px">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('admin.projects.create') }}" id="nav">
@@ -67,4 +68,6 @@
 			{!! $projects->render() !!}
         </div>
     </div>
+</div>
+
 @stop
