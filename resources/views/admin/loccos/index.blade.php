@@ -10,6 +10,10 @@
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				Dodaj locco vožnju
 			</a>
+			<a class="btn btn-primary btn-lg" href="{{ route('admin.showAll') }}"id="nav">
+				
+				Locco vožnje
+			</a>
 		</div>
 		<h1>Locco vožnje</h1>
 		<!--<input class="form-control" id="myInput" type="text" placeholder="Traži..">
@@ -36,65 +40,40 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="table-responsive">
 				<table id="table_id" class="display">
-					@if(count($locco_vožnje) > 0)
+					@if(count($cars) > 0)
 						<thead >
 							<tr>
-								<th>Datum</th>
-								<th>Vozilo</th>
-								<th>Vozač</th>
-								<th>Relacija</th>
-								<th>Projekt</th>
-								<!--<th>Razlog puta</th>-->
-								<th>Početni kilometri</th>
-								<th>Završni kilometri</th>
-								<th>Prijeđeni kilometri</th>
-								<th>Komentar</th>
-								<th class="not-export-column">Opcije</th>
+								<th>Proizovođač, model, Registracija</th>
 							</tr>
+							<div id="demo" class="collapse">
+								<p>2018 g.</p>
+							</div>
 						</thead>
 						<tbody id="myTable">
-						@foreach ($locco_vožnje as $locco)
-							<tr>
-								<td>{{ $locco->datum}} </td>
-								<td>{{ $locco->car['registracija']}}	</td>
-								<td>{{ $locco->user['first_name'] . " " . $locco->user['last_name'] }}</td>
-								<td>{{ $locco->relacija}} </td>
-								<td>{{ $locco->project['id']}} </td>
-								<!--<td>{{ $locco->razlog_puta }} </td>-->
-								<td>{{ $locco->početni_kilometri }} </td>
-								<td>{{ $locco->završni_kilometri }} </td>
-								<td>{{ $locco->prijeđeni_kilometri }} </td>
-								<td>{{ $locco->Komentar }} </td>
-								
-								<td>
-										<a href="{{ route('admin.loccos.edit', $locco->id) }}" class="btn btn-default">
-											<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-												Edit
-										</a>
-										<!--<a href="{{ route('admin.loccos.destroy', $locco->id) }}" class="btn btn-danger action_confirm {{ Sentinel::getUser()->id != $locco->user_id ? 'disabled' : '' }}" data-method="delete" data-token="{{ csrf_token() }}">
-											<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-												Delete
-										</a>-->
-									
-								</td>
-							</tr>
-							@endforeach
+						@foreach ($cars as $car)
+						<tr>
+							<td><a href="{{ route('admin.loccos.show', $car->id) }}">{{ $car->proizvođač . ' ' . $car->model . ' ' . $car->registracija}}</a></td>
+
+						</tr>
+						@endforeach
+					
 							
 						</tbody>
 					@else
-						{{'Nema unesenih locco vožnji!'}}
+						{{'Nema unesenih vozila!'}}
 					@endif
 					
 					<script>
-							$(document).ready(function(){
-							  $("#myInput").on("keyup", function() {
-								var value = $(this).val().toLowerCase();
-								$("#myTable tr").filter(function() {
-								  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-								});
-							  });
+						$(document).ready(function(){
+						  $("#myInput").on("keyup", function() {
+							var value = $(this).val().toLowerCase();
+							$("#myTable tr").filter(function() {
+							  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 							});
-							</script>
+						  });
+						});
+					</script>
+					
 				</table>
 				
 							

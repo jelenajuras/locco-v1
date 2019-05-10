@@ -33,6 +33,10 @@
 						</select>
 						{!! ($errors->has('grad_id') ? $errors->first('grad_id', '<p class="text-danger">:message</p>') : '') !!}
 					</div>
+					<a class="" href="{{ route('admin.cities.create') }}">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						Dodaj grad
+					</a>
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
                     <input class="btn btn-lg btn-primary btn-block" type="submit" value="Upiši"  id="nav">
                 </fieldset>

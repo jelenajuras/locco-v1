@@ -12,14 +12,14 @@
             </a>
         </div>
         <h1>Projekti</h1>
-		<input class="form-control" id="myInput" type="text" placeholder="Traži..">
+		
     </div>
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="table-responsive">
 			@if(count($projects) > 0)
-                <table class="table table-hover">
+               <table id="table_id" class="display">
                     <thead>
                         <tr>
                             <th>Broj projekta</th>
@@ -29,7 +29,7 @@
                             <th>Options</th>
                         </tr>
                     </thead>
-                    <tbody id="myTable">
+                    <tbody id="table_id">
                         @foreach ($projects as $project)
                             <tr>
 								<td>{{ $project->id }}</td>                            
@@ -54,7 +54,7 @@
 					$(document).ready(function(){
 					  $("#myInput").on("keyup", function() {
 						var value = $(this).val().toLowerCase();
-						$("#myTable tr").filter(function() {
+						$("#table_id tr").filter(function() {
 						  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 						});
 					  });
@@ -65,7 +65,7 @@
 					{{'Nema unesenih projekata!'}}
 				@endif
             </div>
-			{!! $projects->render() !!}
+			
         </div>
     </div>
 </div>

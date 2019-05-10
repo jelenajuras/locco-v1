@@ -1,14 +1,19 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
+
 use Sentinel;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Centaur\Dispatches\BaseDispatch;
+
 class SessionController extends Controller
 {
     /** @var Centaur\AuthManager */
+	
     protected $authManager;
+	
     /**
      * Create a new authentication controller instance.
      *
@@ -52,7 +57,14 @@ class SessionController extends Controller
         } else {
             $path = route('home');
         }*/
-        return $result->dispatch(route('admin.dashboard'));
+        
+		if(Sentinel::check()){
+			return $result->dispatch(route('admin.dashboard'));
+		} else {
+			$result->setMessage('E-mail ili lozinka nisu ispravni.');
+			return $result->dispatch(route('auth.login.form'));
+		}
+
     }
     /**
      * Handle a Logout Request

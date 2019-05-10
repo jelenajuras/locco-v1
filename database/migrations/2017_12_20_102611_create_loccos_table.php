@@ -25,7 +25,8 @@ class CreateLoccosTable extends Migration
 			$table->integer('završni_kilometri')->nullable(false);
 			$table->integer('prijeđeni_kilometri')->nullable();
 			$table->string('Komentar')->nullable();
-			$table->timestamps();
+            $table->timestamps();
+			
         });
     }
 

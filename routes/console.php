@@ -16,3 +16,7 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('email:locco', function () {
+    $this->comment(locco_provjera::quote());
+})->describe('Display an locco quote');

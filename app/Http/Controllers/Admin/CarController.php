@@ -27,7 +27,7 @@ class CarController extends Controller
      */
     public function index()
     {
-		$vozila = Car::orderBy('registracija','ASC')->paginate(20);
+		$vozila = Car::orderBy('registracija','ASC')->get();
 		return view('admin.cars.index',['vozila'=>$vozila]);
     }
 

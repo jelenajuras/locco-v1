@@ -61,8 +61,8 @@ class CityController extends Controller
 		
 		$message = session()->flash('success', 'Uspješno je dodan novi grad');
 		
-		//return redirect()->back()->withFlashMessage($messange);
-		return redirect()->route('admin.cities.index')->withFlashMessage($message);
+		return redirect()->back()->withFlashMessage($message);
+		//return redirect()->route('admin.cities.index')->withFlashMessage($message);
     }
 
     /**

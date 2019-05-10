@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Dashboard')
-
+<link rel="stylesheet" href="{{ URL::asset('css/servis.css') }}"/>
 @section('content')
 <div class="Jmain">
 	<div class="row" style="margin-top:80px">
@@ -41,7 +41,7 @@
 							</select>
 							{!! ($errors->has('vozilo_id') ? $errors->first('vozilo_id', '<p class="text-danger">:message</p>') : '') !!}
 						</div>
-						<div class="form-group">
+						<div class="form-group {{ ($errors->has('datum')) ? 'has-error' : '' }}">
 							<text>Datum vožnje</text>
 							<input class="date form-control" placeholder="Datum vožnje" type="text" name="datum" value = "{{ Carbon\Carbon::now()->format('d-m-Y') }}">
 							{!! ($errors->has('datum') ? $errors->first('datum', '<p class="text-danger">:message</p>') : '') !!}
@@ -62,7 +62,7 @@
 								</option>
 							</select>
 						</div>
-						<div class="form-group">
+						<div class="form-group {{ ($errors->has('relacija')) ? 'has-error' : '' }}">
 							<text>Relacija</text>
 							<input class="form-control" placeholder="Relacija" name="relacija" type="text" value="{{ old('relacija') }}" />
 							{!! ($errors->has('relacija') ? $errors->first('relacija', '<p class="text-danger">:message</p>') : '') !!}
@@ -72,16 +72,14 @@
 							<input class="form-control" placeholder="Razlog puta" name="razlog" type="text" value="{{ old('razlog') }}" />
 						</div> -->
 						<div class="form-group">
-						<text>Projekt</text>
-						  <input class="form-control" list="projekti" name="projekt_id"  value="0"/>
-						  <datalist id="projekti">
-							@foreach (DB::table('projects')->orderBy('id','ASC')->get() as $project)
-								<option name="projekt_id" value="{{ $project->id }} ">{{ $project->id . " - " . $project->naziv }}</option>
-							@endforeach	
-						  </datalist>
-
+							<text>Projekt</text>
+							  <input class="form-control" list="projekti" name="projekt_id"  value="0"/>
+							  <datalist id="projekti">
+								@foreach (DB::table('projects')->orderBy('id','ASC')->get() as $project)
+									<option name="projekt_id" value="{{ $project->id }} ">{{ $project->id . " - " . $project->naziv }}</option>
+								@endforeach	
+							  </datalist>
 						 </div>
-						
 						<!--<div class="form-group">
 							<text>Projekt</text>
 							<select class="form-control" name="projekt_id" id="myTable" value="{{ old('projekt_id') }}">
@@ -91,14 +89,13 @@
 								@endforeach	
 							</select>
 						</div>-->
-						<div class="form-group">
+						<div class="form-group {{ ($errors->has('početni_kilometri'))  ? 'has-error' : '' }}">
 							<text>Početni kilometri</text>
-							
 							<input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" value="{{ DB::table('cars')->where('registracija',$reg)->value('trenutni_kilometri') }} "/>
 														
 							{!! ($errors->has('početni_kilometri') ? $errors->first('početni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
 						</div>
-						<div class="form-group">
+						<div class="form-group  {{ ($errors->has('završni_kilometri'))  ? 'has-error' : '' }}">
 							<text>Završni kilometri</text>
 							<input class="form-control" placeholder="Završni kilometri" name="završni_kilometri" type="text" value="{{ old('završni_kilometri') }}" />
 							{!! ($errors->has('završni_kilometri') ? $errors->first('završni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
@@ -106,7 +103,10 @@
 						<div class="form-group">
 							<textarea class="form-control" placeholder="Komentar" name="Komentar" value="{{ old('Komentar') }}"></textarea>
 						</div>
-					
+						<div class="servis form-group">
+							<label for="servis">Prijavi kvar</label>
+							<input class="" type="checkbox" name="servis" value="servis" id="servis" value=""/>
+						</div>
 						<input name="_token" value="{{ csrf_token() }}" type="hidden">
 						<input class="btn btn-lg btn-primary btn-block" type="submit" value="Upiši vožnju" id="nav">
 					</fieldset>

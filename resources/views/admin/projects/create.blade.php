@@ -29,6 +29,10 @@
 						</select>
 						{!! ($errors->has('customer_id') ? $errors->first('customer_id', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
+					<a class="" href="{{ route('admin.customers.create') }}">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						Dodaj naručitelja
+					</a>
 					<div class="form-group">
 						<text>Investitor</text>
 						<select class="form-control" name="investitor_id"  id="sel1">

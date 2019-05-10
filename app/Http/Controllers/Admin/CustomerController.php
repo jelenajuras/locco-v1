@@ -62,8 +62,8 @@ class CustomerController extends Controller
 		
 		$message = session()->flash('success', 'Uspješno je dodan novi naručitelj');
 		
-		//return redirect()->back()->withFlashMessage($messange);
-		return redirect()->route('admin.customers.index')->withFlashMessage($message);
+		return redirect()->back()->withFlashMessage($message);
+	//	return redirect()->route('admin.customers.index')->withFlashMessage($message);
     }
 
     /**

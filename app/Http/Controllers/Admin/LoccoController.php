@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Locco;
 use App\Models\Car;
+use App\Models\Users;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoccoRequest;
 use Sentinel;
+use Mail;
 
 class LoccoController extends Controller
 {
@@ -29,8 +31,10 @@ class LoccoController extends Controller
      */
     public function index()
     {
-        $locco_vožnje = Locco::orderBy('datum','DESC')->orderBy('završni_kilometri','DESC')->get();
-		return view('admin.loccos.index',['locco_vožnje'=>$locco_vožnje]);
+        
+		$cars = Car::get();
+		
+		return view('admin.loccos.index',['cars'=>$cars]);
     }
 
     /**
@@ -52,7 +56,30 @@ class LoccoController extends Controller
      */
     public function store(LoccoRequest $request)
     {
-        $input = $request;
+		$input = $request;
+		
+		if($input['servis']){
+			if(!$input['Komentar'] ){
+				$message = session()->flash('error', 'Za prijavu kvara obavezan je unos napomene');
+				return redirect()->back()->withFlashMessage($message);
+			} else {
+				$car = Car::where('id',$input['vozilo_id'])->first();
+				$user = Users::where('id',$input['user_id'])->first();
+				$napomena =  $input['Komentar'];
+				$mails = array('petrapaola.bockor@duplico.hr', 'mladen.bockor@duplico.hr');
+				
+				foreach($mails as $mail) {
+					Mail::queue(
+						'email.servis',
+						['car' => $car, 'user' => $user, 'napomena' => $napomena],
+						function ($message) use ($mail, $car) {
+							$message->to($mail)
+								->subject('Servis vozila - ' . $car->registracija);
+						}
+					);
+				}
+			}
+		}		
 
 		$data = array(
 			'datum'  => date("Y-m-d", strtotime($input['datum'])),
@@ -79,7 +106,7 @@ class LoccoController extends Controller
 		$message = session()->flash('success', 'Uspješno je dodana nova locco vožnja');
 		
 		//return redirect()->back()->withFlashMessage($messange);
-		return redirect()->route('admin.loccos.index')->withFlashMessage($message);
+		return redirect()->route('admin.dashboard')->withFlashMessage($message);
     }
 
     /**
@@ -90,11 +117,26 @@ class LoccoController extends Controller
      */
     public function show($id)
     {
-        $locco = Locco::find($id);
+        $loccos = Locco::where('vozilo_id',$id)->orderBy('created_at','DESC')->get();
 		
-		return view('admin.loccos.show', ['locco' => $locco]);
+		return view('admin.loccos.show', ['loccos' => $loccos]);
     }
-
+	
+	
+	/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAll()
+    {
+        $loccos = Locco::orderBy('created_at','DESC')->get();
+		
+		return view('admin.showAll', ['loccos' => $loccos]);
+    }
+	
+	
     /**
      * Show the form for editing the specified resource.
      *
@@ -138,7 +180,7 @@ class LoccoController extends Controller
 		$message = session()->flash('success', 'Uspješno su ispravljeni podaci locco vožnje');
 		
 		//return redirect()->back()->withFlashMessage($messange);
-		return redirect()->route('admin.loccos.index')->withFlashMessage($message);
+		return redirect()->route('admin.dashboard')->withFlashMessage($message);
     }
 
     /**

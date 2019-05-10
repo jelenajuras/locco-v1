@@ -109,3 +109,5 @@ Route::post('/postImport','ExcelController@postImport');
 Route::get('/deleteAll','ExcelController@deleteAll');
 Route::get('/getExport','ExcelController@getExport');
 
+Route::get('admin/showAll', ['as' => 'admin.showAll', 'uses' => 'Admin\LoccoController@showAll']);
+
