@@ -5,6 +5,9 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Locco;
+use App\Models\Car;
+use App\Models\Project;
+use App\Models\Users;
 
 class HomeController extends Controller
 {
@@ -26,7 +29,11 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 		$reg = $request->get('reg');
-        return view('user.home')->with('reg',$reg);
+		$cars = Car::get();
+		$projects = Project::orderBy('id','ASC')->get();
+		$users = Users::orderBy('last_name','ASC')->get();
+
+        return view('user.home',['reg' => $reg, 'cars' => $cars, 'projects' => $projects, 'users' => $users ]);
     }
 	
 	

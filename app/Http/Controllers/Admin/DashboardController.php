@@ -6,6 +6,9 @@ use Sentinel;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Car;
+use App\Models\Project;
+use App\Models\Users;
 
 class DashboardController extends Controller
 {
@@ -26,7 +29,11 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-      $reg = $request->get('reg');
-       return view('admin.dashboard')->with('reg',$reg);
+		$reg = $request->get('reg');
+		$cars = Car::get();
+		$projects = Project::orderBy('id','ASC')->get();
+		$users = Users::orderBy('last_name','ASC')->get();
+
+		return view('admin.dashboard',['reg' => $reg, 'cars' => $cars, 'projects' => $projects, 'users' => $users ]);
     }
 }

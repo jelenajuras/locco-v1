@@ -2,18 +2,6 @@
 
 @section('title', 'Ispravi locco')
 
-<head>
-  <title></title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-
 @section('content')
 <div class="row" style="margin-top:80px">
     <div class="col-md-6 col-md-offset-3">
@@ -41,14 +29,9 @@
                     </div>
 					<div class="form-group">
 						<text>Datum vožnje</text>
-						<input class="date form-control" placeholder="Datum vožnje" type="text" name="datum" value = "{{ date("d-m-Y",strtotime($locco->datum)) }}">
+						<input class="date form-control" placeholder="Datum vožnje" type="date" name="datum" value = "{{ date("Y-m-d",strtotime($locco->datum)) }}">
 						{!! ($errors->has('datum') ? $errors->first('datum', '<p class="text-danger">:message</p>') : '') !!}
 					</div>
-					<script type="text/javascript">
-						$('.date').datepicker({  
-						   format: 'dd-mm-yyyy'
-						 });  
-					</script> 
 					<div class="form-group {{ ($errors->has('user_id'))  ? 'has-error' : '' }}">
                         <text>Vozač</text>
 						<select class="form-control" name="user_id" id="sel1">
@@ -65,10 +48,6 @@
                         <input class="form-control" placeholder="Relacija" name="relacija" type="text" value="{{ $locco->relacija }}" />
 						{!! ($errors->has('relacija') ? $errors->first('relacija', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
-					<!--<div class="form-group">
-                        <input class="form-control" placeholder="Razlog puta" name="razlog" type="text" value="{{ $locco->razlog_puta }}" />
-						
-                    </div>-->
 					<div class="form-group">
 					<text>Projekt</text>
 					  <input class="form-control" list="projekti" name="projekt_id" value="0"/>
@@ -82,16 +61,6 @@
 					  </datalist>
 
 					 </div>
-					
-					<!--<div class="form-group">
-                        <text>Projekt</text>
-						<select class="form-control" name="projekt_id" id="myTable" value="{{ old('projekt_id') }}">
-							<option value="0"></option>
-							@foreach (DB::table('projects')->orderBy('id','ASC')->get() as $project)
-								<option name="projekt_id" value=" {{ $project->id }} ">{{ $project->id . " - " . $project->naziv }}</option>
-							@endforeach	
-						</select>
-                    </div>-->
 					<div class="form-group">
                         <input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" value="{{ $locco->početni_kilometri }}" />
 						{!! ($errors->has('početni_kilometri') ? $errors->first('početni_kilometri', '<p class="text-danger">:message</p>') : '') !!}

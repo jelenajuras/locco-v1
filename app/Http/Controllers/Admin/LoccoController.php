@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Locco;
 use App\Models\Car;
 use App\Models\Users;
+use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoccoRequest;
 use Sentinel;
@@ -44,8 +45,12 @@ class LoccoController extends Controller
      */
     public function create(Request $request)
     {
-	   $reg = $request->get('reg');
-       return view('admin.loccos.create')->with('reg',$reg);
+	    $reg = $request->get('reg');
+		$cars = Car::get();
+		$projects = Project::orderBy('id','ASC')->get();
+		$users = Users::orderBy('last_name','ASC')->get();
+
+       return view('admin.loccos.create',['reg' => $reg, 'cars' => $cars, 'projects' => $projects, 'users' => $users ]);
     }
 
     /**
