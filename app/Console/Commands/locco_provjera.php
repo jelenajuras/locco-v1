@@ -52,24 +52,24 @@ class locco_provjera extends Command
 		$cars = Car::get();
 
 		foreach($cars as $car){
-			$loccos_danas = Locco::where('vozilo_id', $car->id)->orderBy('završni_kilometri','DESC')->whereYear('datum', '=', $godina)->whereMonth('datum', '=', $mjesec)->whereDay('datum', '=', $dan)->first();
+			$loccos_danas = Locco::where('vozilo_id', $car->id)->orderBy('zavrsni_kilometri','DESC')->whereYear('datum', '=', $godina)->whereMonth('datum', '=', $mjesec)->whereDay('datum', '=', $dan)->first();
 			if($loccos_danas != null){
-				$locco_prethodni = Locco::where('vozilo_id',$car->id)->orderBy('završni_kilometri','DESC')->skip(1)->take(1)->value('završni_kilometri');
-				if($locco_prethodni != $loccos_danas->početni_kilometri){
+				$locco_prethodni = Locco::where('vozilo_id',$car->id)->orderBy('zavrsni_kilometri','DESC')->skip(1)->take(1)->value('zavrsni_kilometri');
+				if($locco_prethodni != $loccos_danas->pocetni_kilometri){
 					$registracija = $loccos_danas->car['registracija'];
-					$locco_pocetni = $loccos_danas->početni_kilometri;
+					$locco_pocetni = $loccos_danas->pocetni_kilometri;
 					Mail::queue('email.locco', ['locco_pocetni' => $locco_pocetni, 'registracija' => $registracija, 'locco_prethodni' => $locco_prethodni], function ($mail) use ($registracija) {
 					$mail->to('petrapaola.bockor@duplico.hr')
 						->cc('jelena.juras@duplico.hr')
 						->from('info@duplico.hr', 'Duplico')
-						->subject('Locco ' . ' izvještaj - ' . $registracija );
+						->subject('Locco ' . ' izvještaj ' . ' - ' . $registracija );
 					});
 				}
 			}
 		}
 		
 	//	$mails = array('jelena.juras@duplico.hr','jelena.juras@duplico.hr','jelena.juras@duplico.hr');
-		$mails = array('tomica.lisak@duplico.hr','marko.brscic@duplico.hr','marko.turk@duplico.hr');
+	/*	$mails = array('tomica.lisak@duplico.hr','marko.brscic@duplico.hr','marko.turk@duplico.hr');
 		
 		foreach($mails as $mail_to){
 			Mail::queue('email.locco_reminder', ['mails' => $mails], function ($mail) use ($mail_to) {
@@ -78,6 +78,6 @@ class locco_provjera extends Command
 					->from('info@duplico.hr', 'Duplico')
 					->subject('Locco ' . ' podjetnik ');
 			});
-		}
+		}*/
     }
 }

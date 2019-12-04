@@ -18,22 +18,24 @@
 		<h1>Locco vožnje</h1>
 		<!--<input class="form-control" id="myInput" type="text" placeholder="Traži..">
 		</br>
-		<a href="{{URL::to('getExport')}}" class="btn btn-success">Export</a>*-->
-		<!--<a href="{{URL::to('deleteAll')}}" class="btn btn-danger">Delete all</a>
+		<a href="{{URL::to('getExport')}}" class="btn btn-success">Export</a>
+		<a href="{{URL::to('deleteAll')}}" class="btn btn-danger">Delete all</a>-->
 		<a href="{{URL::to('getImport')}}" class="btn btn-success">Import</a>
-		<div class="btn-group">
-			<button type="button" class="btn btn-info">Export</button>
-			<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-				<span class="caret"></span>
-				<span class="sr-only">Toggle Dropdown</span>
-			</button>
-			<ul class="dropdown-menu" role="menu" id="export-menu">
-				<li id="export-to-excel"><a href="{{URL::to('getExport')}}">Export to excel</a></li>
-				<li class="divider"></li>
-				<li><a href="#">Other</li>
-				
-			</ul>
-		</div>-->
+		@if(Sentinel::inRole('administrator'))
+			<div class="btn-group">
+				<button type="button" class="btn btn-info">Export</button>
+				<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown</span>
+				</button>
+				<ul class="dropdown-menu" role="menu" id="export-menu">
+					<li id="export-to-excel"><a href="{{URL::to('getExport')}}">Export to excel</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Other</li>
+					
+				</ul>
+			</div>
+		@endif
 	</div>
 		
 	<div class="row">

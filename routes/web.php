@@ -101,6 +101,15 @@ Route::group(['prefix' => 'admin'], function () {
   'update'		=> 'admin.loccos.update', 
   'destroy'		=> 'admin.loccos.destroy'
   ]]);
+   Route::resource('fuels', 'Admin\FuelController', ['names' => [
+  'index' 		=> 'admin.fuels.index', 
+  'create' 		=> 'admin.fuels.create', 
+  'store' 		=> 'admin.fuels.store', 
+  'show' 		=> 'admin.fuels.show', 
+  'edit' 		=> 'admin.fuels.edit', 
+  'update'		=> 'admin.fuels.update', 
+  'destroy'		=> 'admin.fuels.destroy'
+  ]]);
 });
 
 //excel
@@ -108,6 +117,10 @@ Route::get('/getImport','ExcelController@getImport');
 Route::post('/postImport','ExcelController@postImport');
 Route::get('/deleteAll','ExcelController@deleteAll');
 Route::get('/getExport','ExcelController@getExport');
+//excel fuel
+Route::get('/getImport_fuel','ExcelController@getImport_fuel');
+Route::post('/postImport_fuel','ExcelController@postImport_fuel');
+Route::get('/getExport_fuel','ExcelController@getExport_fuel');
 
 Route::get('admin/showAll', ['as' => 'admin.showAll', 'uses' => 'Admin\LoccoController@showAll']);
 

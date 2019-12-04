@@ -82,15 +82,15 @@
 										@endforeach	
 									</select>
 								</div>-->
-								<div class="form-group {{ ($errors->has('početni_kilometri'))  ? 'has-error' : '' }}">
+								<div class="form-group {{ ($errors->has('pocetni_kilometri'))  ? 'has-error' : '' }}">
 									<text>Početni kilometri</text>
-									<input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" required value="{!! isset($vozilo_user) ? $vozilo_user->trenutni_kilometri : '' !!}"/>	
-									{!! ($errors->has('početni_kilometri') ? $errors->first('početni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
+									<input class="form-control" placeholder="Početni kilometri" name="pocetni_kilometri" type="text" required value="{!! isset($vozilo_user) ? $vozilo_user->trenutni_kilometri : '' !!}"/>	
+									{!! ($errors->has('pocetni_kilometri') ? $errors->first('pocetni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
 								</div>
-								<div class="form-group  {{ ($errors->has('završni_kilometri'))  ? 'has-error' : '' }}">
+								<div class="form-group  {{ ($errors->has('zavrsni_kilometri'))  ? 'has-error' : '' }}">
 									<text>Završni kilometri</text>
-									<input class="form-control" placeholder="Završni kilometri" name="završni_kilometri" type="text" value="{{ old('završni_kilometri') }}" required />
-									{!! ($errors->has('završni_kilometri') ? $errors->first('završni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
+									<input class="form-control" placeholder="Završni kilometri" name="zavrsni_kilometri" type="text" value="{{ old('zavrsni_kilometri') }}" required />
+									{!! ($errors->has('zavrsni_kilometri') ? $errors->first('zavrsni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
 								</div>
 								<div class="form-group">
 									<textarea class="form-control" placeholder="Komentar" name="Komentar" value="{{ old('Komentar') }}"></textarea>

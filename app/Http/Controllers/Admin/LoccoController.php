@@ -7,6 +7,7 @@ use App\Models\Locco;
 use App\Models\Car;
 use App\Models\Users;
 use App\Models\Project;
+use App\Models\Fuel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoccoRequest;
 use Sentinel;
@@ -32,9 +33,8 @@ class LoccoController extends Controller
      */
     public function index()
     {
-        
 		$cars = Car::get();
-		
+		$loccos = Locco::get();
 		return view('admin.loccos.index',['cars'=>$cars]);
     }
 
@@ -50,7 +50,7 @@ class LoccoController extends Controller
 		$projects = Project::orderBy('id','ASC')->get();
 		$users = Users::orderBy('last_name','ASC')->get();
 
-       return view('admin.loccos.create',['reg' => $reg, 'cars' => $cars, 'projects' => $projects, 'users' => $users ]);
+        return view('admin.loccos.create',['reg' => $reg, 'cars' => $cars, 'projects' => $projects, 'users' => $users ]);
     }
 
     /**
@@ -62,6 +62,19 @@ class LoccoController extends Controller
     public function store(LoccoRequest $request)
     {
 		$input = $request;
+		
+		if(isset( $input['liters']) && $input['liters'] > 0 ) {
+			$data1 = array(
+				'car_id'  => $input['vozilo_id'],
+				'user_id'  => $input['user_id'],
+				'liters'  => str_replace(",",".", $input['liters']),
+				'km'  => $input['km'],
+				'date'  => date("Y-m-d", strtotime($input['datum'])),
+			);
+			
+			$fuel = new Fuel();
+			$fuel->saveFuel($data1);
+		}
 		
 		if($input['servis']){
 			if(!$input['Komentar'] ){
@@ -84,25 +97,35 @@ class LoccoController extends Controller
 					);
 				}
 			}
-		}		
-
+		}
+		
+		if(!$input['razlog']) {
+			$razlog_puta = null;
+		} else {
+			$razlog_puta = $input['razlog'];
+		}
+		
+		if(!$input['projekt_id']) {
+			$projekt_id = 0;
+		} else {
+			$projekt_id = $input['projekt_id'];
+		}
 		$data = array(
 			'datum'  => date("Y-m-d", strtotime($input['datum'])),
 			'vozilo_id'  => $input['vozilo_id'],
 			'user_id'  => $input['user_id'],
 			'relacija'  => $input['relacija'],
-			'projekt_id'  => $input['projekt_id'],
-			'razlog_puta'  => $input['razlog'],
-			'početni_kilometri'  => trim($input['početni_kilometri']),
-			'završni_kilometri'  => $input['završni_kilometri'],
-			'prijeđeni_kilometri'  => $input['završni_kilometri']-trim($input['početni_kilometri']),
+			'projekt_id'  => $projekt_id,
+			'pocetni_kilometri'  => trim($input['pocetni_kilometri']),
+			'zavrsni_kilometri'  => $input['zavrsni_kilometri'],
+			'prijedeni_kilometri'  => $input['zavrsni_kilometri']-trim($input['pocetni_kilometri']),
 			'Komentar'  => $input['Komentar']
 		);
 		$locco = new Locco();
 		$locco->saveLocco($data);
 		
 		$km = array(
-			'trenutni_kilometri'  => $input['završni_kilometri']
+			'trenutni_kilometri'  => $input['zavrsni_kilometri']
 		);
 		
 		$vozilo = Car::where('id', $input['vozilo_id']);
@@ -166,17 +189,16 @@ class LoccoController extends Controller
     {
         $locco = Locco::find($id);
 		$input = $request;
-		
+
 		$data = array(
 			'datum'  => date("Y-m-d", strtotime($input['datum'])),
 			'vozilo_id'  => $input['vozilo_id'],
 			'user_id'  => $input['user_id'],
 			'relacija'  =>  $input['relacija'],
 			'projekt_id'  => $input['projekt_id'],
-			'razlog_puta'  => $input['razlog'],
-			'početni_kilometri'  => trim($input['početni_kilometri']," "),
-			'završni_kilometri'  => trim($input['završni_kilometri']," "),
-			'prijeđeni_kilometri'  => $input['završni_kilometri']-$input['početni_kilometri'],
+			'pocetni_kilometri'  => trim($input['pocetni_kilometri']),
+			'zavrsni_kilometri'  => $input['zavrsni_kilometri'],
+			'prijedeni_kilometri'  => $input['zavrsni_kilometri']-trim($input['pocetni_kilometri']),
 			'Komentar'  => $input['Komentar']
 		);
 		

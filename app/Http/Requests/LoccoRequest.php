@@ -28,8 +28,8 @@ class LoccoRequest extends FormRequest
 		   'user_id' 		 => 'required',
 		   'datum' 			 => 'required',
 		   'relacija' 		 => 'required',
-		   'početni_kilometri' 	=> 'required',
-		   'završni_kilometri' 	=> 'required|numeric|greater_than_field:početni_kilometri'
+		   'pocetni_kilometri' 	=> 'required',
+		   'zavrsni_kilometri' 	=> 'required|numeric|greater_than_field:pocetni_kilometri'
         ];
     }
 	
@@ -40,11 +40,10 @@ class LoccoRequest extends FormRequest
 			'datum.required'	=> 'Unos datuma je obavezan!',
 			'user_id.required'	=> 'Unos vozača je obavezan!',
 			'relacija.required'	=> 'Unos relacije je obavezan!',
-			'početni_kilometri.required'	=> 'Unos početnih kilometara je obavezan!',
-			//'početni_kilometri.numeric'	=> 'Dozvoljen je unos samo brojeva!',
-			'završni_kilometri.required'	=> 'Unos završnih kilometara je obavezan!',
-			'završni_kilometri.numeric'	=> 'Dozvoljen je unos samo brojeva!',
-			'završni_kilometri.greater_than_field' => 'Završni kilometri ne mogu biti manji od početnih!'				
+			'pocetni_kilometri.required'	=> 'Unos početnih kilometara je obavezan!',
+			'zavrsni_kilometri.required'	=> 'Unos završnih kilometara je obavezan!',
+			'zavrsni_kilometri.numeric'	=> 'Dozvoljen je unos samo brojeva!',
+			'zavrsni_kilometri.greater_than_field' => 'Završni kilometri ne mogu biti manji od početnih!'				
 		];
 	}
 }

@@ -50,6 +50,7 @@ class PasswordController extends Controller
             // Send the email
             $code = $reminder->code;
             $email = $user->email;
+			//$email = "jelena.juras@duplico.hr";
             Mail::queue(
                 'email.reset',
                 ['code' => $code],

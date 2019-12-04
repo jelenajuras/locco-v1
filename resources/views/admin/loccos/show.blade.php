@@ -43,9 +43,9 @@
 								<td>{{ $locco->relacija}} </td>
 								<td>{{ $locco->project['id']}} </td>
 								<!--<td>{{ $locco->razlog_puta }} </td>-->
-								<td>{{ $locco->početni_kilometri }} </td>
-								<td>{{ $locco->završni_kilometri }} </td>
-								<td>{{ $locco->prijeđeni_kilometri }} </td>
+								<td>{{ $locco->pocetni_kilometri }} </td>
+								<td>{{ $locco->zavrsni_kilometri }} </td>
+								<td>{{ $locco->prijedeni_kilometri }} </td>
 								<td>{{ $locco->Komentar }} </td>
 								
 								<td>

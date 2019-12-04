@@ -62,12 +62,12 @@
 
 					 </div>
 					<div class="form-group">
-                        <input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" value="{{ $locco->početni_kilometri }}" />
-						{!! ($errors->has('početni_kilometri') ? $errors->first('početni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
+                        <input class="form-control" placeholder="Početni kilometri" name="pocetni_kilometri" type="text" value="{{ $locco->pocetni_kilometri }}" />
+						{!! ($errors->has('pocetni_kilometri') ? $errors->first('pocetni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
-                        <input class="form-control" placeholder="Završni kilometri" name="završni_kilometri" type="text" value="{{ $locco->završni_kilometri }}" />
-						{!! ($errors->has('završni_kilometri') ? $errors->first('završni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
+                        <input class="form-control" placeholder="Završni kilometri" name="zavrsni_kilometri" type="text" value="{{ $locco->zavrsni_kilometri }}" />
+						{!! ($errors->has('zavrsni_kilometri') ? $errors->first('zavrsni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 					<div class="form-group">
                         <textarea class="form-control" placeholder="Komentar" name="Komentar" value="{{ $locco->Komentar }}">{{ $locco->Komentar }}</textarea>

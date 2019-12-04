@@ -103,10 +103,12 @@
 								<li class="{{ Request::is('admin/roles*') ? 'active' : '' }}"><a href="{{ route('admin.projects.index') }}" id="nav1">Projekti</a></li>
 							</ul>
 						 </li>
-							
+						<li class=""><a href="{{ route('admin.fuels.index') }}" id="nav1">Potrošnja goriva</a></li>
+						<li class=""><a href="{{ route('admin.fuels.create') }}" id="nav1">Točenje goriva</a></li>
                         @endif
 						
 						<li class=""><a href="{{ route('admin.loccos.index') }}" id="nav1">Locco vožnja</a></li>
+						
 						
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

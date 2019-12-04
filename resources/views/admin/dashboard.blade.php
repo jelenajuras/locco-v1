@@ -87,23 +87,35 @@
 										@endforeach	
 									</select>
 								</div>-->
-								<div class="form-group {{ ($errors->has('početni_kilometri'))  ? 'has-error' : '' }}">
+								<div class="form-group {{ ($errors->has('pocetni_kilometri'))  ? 'has-error' : '' }}">
 									<text>Početni kilometri</text>
-									<input class="form-control" placeholder="Početni kilometri" name="početni_kilometri" type="text" required value="{!! isset($vozilo_user) ? $vozilo_user->trenutni_kilometri : '' !!}"/>	
-									{!! ($errors->has('početni_kilometri') ? $errors->first('početni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
+									<input class="form-control" placeholder="Početni kilometri" name="pocetni_kilometri" type="text" required value="{!! isset($vozilo_user) ? $vozilo_user->trenutni_kilometri : '' !!}"/>	
+									{!! ($errors->has('pocetni_kilometri') ? $errors->first('pocetni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
 								</div>
-								<div class="form-group  {{ ($errors->has('završni_kilometri'))  ? 'has-error' : '' }}">
+								<div class="form-group  {{ ($errors->has('zavrsni_kilometri'))  ? 'has-error' : '' }}">
 									<text>Završni kilometri</text>
-									<input class="form-control" placeholder="Završni kilometri" name="završni_kilometri" type="text" value="{{ old('završni_kilometri') }}" required />
-									{!! ($errors->has('završni_kilometri') ? $errors->first('završni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
+									<input class="form-control" placeholder="Završni kilometri" name="zavrsni_kilometri" type="text" value="{{ old('zavrsni_kilometri') }}" required />
+									{!! ($errors->has('zavrsni_kilometri') ? $errors->first('zavrsni_kilometri', '<p class="text-danger">:message</p>') : '') !!}
 								</div>
 								<div class="form-group">
 									<textarea class="form-control" placeholder="Komentar" name="Komentar" value="{{ old('Komentar') }}"></textarea>
 								</div>
+								
 								<div class="servis form-group">
 									<label for="servis">Prijavi kvar</label>
 									<input class="" type="checkbox" name="servis" value="servis" id="servis" value=""/>
 								</div>
+								<!--<div class="servis form-group">
+									<a class="" id="gorivo" value="">Točenje goriva</a>
+									
+									<div class="liters form-group">
+										<input class="form-control" type="text" placeholder="0,00" name="liters" min="0" value="{{ old('liters')}}" pattern="^\d*(\,\d{0,2})?$"  />
+									</div>
+									<div class="liters form-group">
+										<input class="form-control" type="text" placeholder="Trenutni kilometri" name="km" value="{{ old('km')}}" pattern= "[0-9]+" required />
+									</div>
+								</div>
+								-->
 								<input name="_token" value="{{ csrf_token() }}" type="hidden">
 								<input class="btn btn-lg btn-primary btn-block" type="submit" value="Upiši vožnju" id="nav">
 							</fieldset>
@@ -127,6 +139,10 @@
 			  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		  });
+		});
+		
+		$('#gorivo').click(function(){
+			$('.liters').toggle();
 		});
 		</script>
 	</div>
