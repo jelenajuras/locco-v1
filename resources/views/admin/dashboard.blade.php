@@ -102,7 +102,7 @@
 								</div>
 								
 								<div class="servis form-group">
-									<label for="servis">Prijavi kvar</label>
+									<label for="servis">Prijavi kvar / redovan servis</label>
 									<input class="" type="checkbox" name="servis" value="servis" id="servis" value=""/>
 								</div>
 								<!--<div class="servis form-group">
