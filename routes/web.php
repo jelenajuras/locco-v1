@@ -16,6 +16,11 @@ Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
 // Home page
 Route::get('home', ['as' => 'home', 'uses' => 'User\HomeController@index']);
 
+Route::get('/down', function(){
+  $exitCode = Artisan::call('down');
+});
+
+
 // Authorization
 Route::get('login', ['as' => 'auth.login.form', 'uses' => 'Auth\SessionController@getLogin']);
 Route::post('login', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);
