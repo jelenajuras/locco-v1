@@ -29,11 +29,15 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-		$reg = $request->get('reg');
-		$cars = Car::get();
-		$projects = Project::orderBy('id','ASC')->get();
-		$users = Users::orderBy('last_name','ASC')->get();
+      if( Sentinel::inRole('administrator')) {
+        $reg = $request->get('reg');
+        $cars = Car::get();
+        $projects = Project::orderBy('id','ASC')->get();
+        $users = Users::orderBy('last_name','ASC')->get();
 
-		return view('admin.dashboard',['reg' => $reg, 'cars' => $cars, 'projects' => $projects, 'users' => $users ]);
+        return view('admin.dashboard',['reg' => $reg, 'cars' => $cars, 'projects' => $projects, 'users' => $users ]);
+     /*  } else {
+        return redirect('https://duplico.myintranet.io'); */
+      }
     }
 }

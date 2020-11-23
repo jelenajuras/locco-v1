@@ -75,30 +75,6 @@ class LoccoController extends Controller
 			$fuel = new Fuel();
 			$fuel->saveFuel($data1);
 		}
-		
-		if($input['servis']){
-			if(!$input['Komentar'] ){
-				$message = session()->flash('error', 'Za prijavu kvara obavezan je unos napomene');
-				return redirect()->back()->withFlashMessage($message);
-			} else {
-				$car = Car::where('id',$input['vozilo_id'])->first();
-				$user = Users::where('id',$input['user_id'])->first();
-				$napomena =  $input['Komentar'];
-				$mails = array('petrapaola.bockor@duplico.hr', 'mladen.bockor@duplico.hr');
-				
-				foreach($mails as $mail) {
-					Mail::queue(
-						'email.servis',
-						['car' => $car, 'user' => $user, 'napomena' => $napomena],
-						function ($message) use ($mail, $car) {
-							$message->to($mail)
-								->subject('Servis vozila - ' . $car->registracija);
-						}
-					);
-				}
-			}
-		}
-		
 		if(!$input['razlog']) {
 			$razlog_puta = null;
 		} else {
@@ -130,6 +106,28 @@ class LoccoController extends Controller
 		
 		$vozilo = Car::where('id', $input['vozilo_id']);
 		$vozilo->update($km);
+		if($input['servis']){
+			if(!$input['Komentar'] ){
+				$message = session()->flash('error', 'Za prijavu kvara obavezan je unos napomene');
+				return redirect()->back()->withFlashMessage($message);
+			} else {
+				$car = Car::where('id',$input['vozilo_id'])->first();
+				$user = Users::where('id',$input['user_id'])->first();
+				$napomena =  $input['Komentar'];
+				$mails = array('petrapaola.bockor@duplico.hr', 'mladen.bockor@duplico.hr');
+				
+				foreach($mails as $mail) {
+					Mail::queue(
+						'email.servis',
+						['car' => $car, 'user' => $user, 'napomena' => $napomena],
+						function ($message) use ($mail, $car) {
+							$message->to($mail)
+								->subject('Servis vozila - ' . $car->registracija);
+						}
+					);
+				}
+			}
+		}
 		
 		$message = session()->flash('success', 'Uspješno je dodana nova locco vožnja');
 		

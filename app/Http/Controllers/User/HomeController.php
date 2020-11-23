@@ -8,6 +8,7 @@ use App\Models\Locco;
 use App\Models\Car;
 use App\Models\Project;
 use App\Models\Users;
+use Sentinel;
 
 class HomeController extends Controller
 {
@@ -28,13 +29,17 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-		$reg = $request->get('reg');
-		$cars = Car::get();
-		$projects = Project::orderBy('id','ASC')->get();
-		$users = Users::orderBy('last_name','ASC')->get();
+		if( Sentinel::inRole('administrator')) {
 
-        return view('user.home',['reg' => $reg, 'cars' => $cars, 'projects' => $projects, 'users' => $users ]);
+            $reg = $request->get('reg');
+            $cars = Car::get();
+            $projects = Project::orderBy('id','ASC')->get();
+            $users = Users::orderBy('last_name','ASC')->get();
+
+            return view('user.home',['reg' => $reg, 'cars' => $cars, 'projects' => $projects, 'users' => $users ]);
+        
+        } else {
+            return redirect('https://duplico.myintranet.io');
+        }
     }
-	
-	
 }

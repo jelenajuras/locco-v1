@@ -38,7 +38,6 @@ class UserController extends Controller
     {
         $users = Users::orderBy('last_name','ASC')->get();
         return view('admin.users.index', ['users' => $users]);
-
     }
     /**
      * Show the form for creating a new user.
